@@ -1,0 +1,71 @@
+.BuildControls {
+  width: 40rem;
+  height: 30rem;
+  background-color: rgba(22, 10, 4, 0.8);
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  font-size: 4rem;
+  border-radius: 0.7rem 0.7rem 0.7rem 0.7rem;
+  box-shadow: 0 0.7rem 1rem rgb(0, 0, 0);
+  margin: auto;
+  padding: 9rem 0;
+  position: absolute;
+  top: 20%;
+  right: 10%;
+}
+
+.Price {
+  position: absolute;
+  top: 1rem;
+  left: 10rem;
+  text-transform: uppercase;
+  font-size: 2.3rem;
+  font-weight: 50;
+}
+
+.KeepAdding {
+  background-color: #2e0103;
+  position: absolute;
+  top: 23rem;
+  left: 13rem;
+  height: 3.7rem;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid rgb(0, 0, 0);
+  color: #fcfcfc;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 1rem 3rem;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.KeepAdding:hover,
+.KeepAdding:active {
+  background-color: #4d0205;
+
+  color: #fcfcfc;
+}
+
+.KeepAdding:disabled {
+  background-color: #c7c6c6;
+  cursor: not-allowed;
+  border: 1px solid #ccc;
+  color: #888888;
+}
+
+.KeepAdding:not(:disabled) {
+  animation: enable 0.3s linear;
+}
+
+@keyframes enable {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

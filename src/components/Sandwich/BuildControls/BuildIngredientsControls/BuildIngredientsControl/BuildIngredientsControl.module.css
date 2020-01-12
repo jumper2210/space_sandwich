@@ -1,0 +1,62 @@
+.BuildIngredientsControl {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.BuildIngredientsControl button {
+  margin: 0 0.4rem;
+  padding: 0.4rem;
+  cursor: pointer;
+  width: 6rem;
+  outline: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  border: 0.1rem solid rgb(22, 10, 4);
+  border-radius: 10%;
+}
+
+.BuildIngredientsControl button:disabled {
+  background-color: #ac9980;
+  border: 0.1rem solid rgb(22, 10, 4);
+  color: #ccc;
+  cursor: default;
+}
+
+.BuildIngredientsControl button:hover:disabled {
+  background-color: #ac9980;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.BuildIngredientsControl .Cancel {
+  background-color: #8f5e1e;
+  color: white;
+}
+
+.BuildIngredientsControl .Pick {
+  background-color: #8f5e1e;
+  color: white;
+}
+
+.BuildIngredientsControl .Cancel:hover,
+.BuildIngredientsControl .Cancel:active {
+  background-color: #99703f;
+  color: white;
+}
+
+.BuildIngredientsControl .Pick:hover,
+.BuildIngredientsControl .Pick:active {
+  background-color: #99703f;
+  color: white;
+}
+
+.Label {
+  text-align: center;
+  text-transform: uppercase;
+  margin-right: 0.3rem;
+  margin-left: 1rem;
+  color: #aa6817;
+}
