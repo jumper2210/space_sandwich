@@ -1,0 +1,55 @@
+.title {
+  font-size: 3rem;
+  color: black;
+}
+
+.span {
+  text-transform: uppercase;
+  font-size: 2.1rem;
+  font-weight: 400;
+}
+
+.information {
+  font-size: 1.7rem;
+  color: brown;
+  text-transform: uppercase;
+}
+
+.p {
+  font-size: 2.3rem;
+}
+
+.list {
+  font-size: 2rem;
+  display: inline-block;
+}
+
+.ContinuePurchasing {
+  color: brown;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.Continue {
+  background-color: transparent;
+  color: rgba(3, 154, 3, 0.7);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 1rem;
+  font-weight: bold;
+}
+
+.Cancel {
+  background-color: transparent;
+  color: rgba(255, 0, 0, 0.598);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 1rem;
+  font-weight: bold;
+}

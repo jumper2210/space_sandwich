@@ -29,7 +29,7 @@ const BuildControls = props => (
       disabled={!props.moveOn}
       onClick={props.keepAdding}
     >
-      Przejdź dalej
+      Wybór składników
     </button>
   </div>
 );

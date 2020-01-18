@@ -26,8 +26,12 @@ const BuildIngredientsControls = props => (
         disabledIgRemoveHandler={props.disabledIgRemoveHandler[ctrl.type]}
       />
     ))}
-    <button className={classes.KeepAddingIngredients} disabled={!props.moveOn}>
-      Przejdź dalej
+    <button
+      className={classes.KeepAddingIngredients}
+      disabled={!props.moveOn}
+      onClick={props.keepAdding}
+    >
+      wybór sosów
     </button>
     <button className={classes.ComeBack} onClick={props.previousStepHandler}>
       Wróć

@@ -4,6 +4,9 @@ import Sandwich from "../../components/Sandwich/SandwichChceck/SandwichCheck";
 import BuildBreadControls from "../../components/Sandwich/BuildControls/BuildBreadControls/BuildBreadControls";
 import PropTypes from "prop-types";
 import BuildIngredientsControls from "../../components/Sandwich/BuildControls/BuildIngredientsControls/BuildIngredientsControls";
+import BuildSaucesControls from "../../components/Sandwich/BuildControls/BuildSaucesControls/BuildSaucesControls";
+import Modal from "../../components/UI/Modal/Modal";
+import OrderBox from "../../components/Sandwich/OrderBox/OrderBox";
 
 const Prices = {
   wholeGrains: 2.6,
@@ -12,7 +15,10 @@ const Prices = {
   Meat: 2,
   Cheese: 1,
   Salad: 3,
-  Bacon: 4
+  Bacon: 4,
+  Space: 10,
+  Barbecue: 4,
+  Ketchup: 3
 };
 
 class SandwichBuilder extends Component {
@@ -28,11 +34,52 @@ class SandwichBuilder extends Component {
       Salad: 0,
       Bacon: 0
     },
+    Sauces: {
+      Space: 0,
+      Barbecue: 0,
+      Ketchup: 0
+    },
     totalPrice: 0,
     moveOn: false,
     nextStep: false,
     buildingStep: 0,
-    disabled: false
+    disabled: false,
+    purchasing: false
+  };
+  addSaucesType = type => {
+    const oldCount = this.state.Sauces[type];
+    const updatedCount = oldCount + 1;
+    const updatedSaucesTypes = {
+      ...this.state.Sauces
+    };
+    updatedSaucesTypes[type] = updatedCount;
+    const priceAddition = Prices[type];
+    const oldPrice = this.state.totalPrice;
+    const newPrice = oldPrice + priceAddition;
+    this.setState({
+      totalPrice: newPrice,
+      Sauces: updatedSaucesTypes
+    });
+    this.updateMoveOnStateSu(updatedSaucesTypes);
+  };
+
+  removeSaucesType = type => {
+    const oldCount = this.state.Sauces[type];
+    if (oldCount <= 0) {
+      return;
+    }
+    const updatedCount = oldCount - 1;
+    const updatedSaucesTypes = {
+      ...this.state.Sauces
+    };
+    updatedSaucesTypes[type] = updatedCount;
+    const priceAddition = Prices[type];
+    const oldPrice = this.state.totalPrice;
+    const newPrice = oldPrice - priceAddition;
+    this.setState({
+      totalPrice: newPrice,
+      Sauces: updatedSaucesTypes
+    });
   };
 
   updateMoveOnState(BreadTypes) {
@@ -45,7 +92,26 @@ class SandwichBuilder extends Component {
       }, 0);
     this.setState({ moveOn: sum > 0 });
   }
-
+  updateMoveOnStateIg(Ingredients) {
+    let sum = Object.keys(Ingredients)
+      .map(btKey => {
+        return Ingredients[btKey];
+      })
+      .reduce((sum, el) => {
+        return sum + el;
+      }, 0);
+    this.setState({ moveOn: sum > 0 });
+  }
+  updateMoveOnStateSu(Sauces) {
+    let sum = Object.keys(Sauces)
+      .map(btKey => {
+        return Sauces[btKey];
+      })
+      .reduce((sum, el) => {
+        return sum + el;
+      }, 0);
+    this.setState({ moveOn: sum > 0 });
+  }
   addBreadType = type => {
     const oldCount = this.state.BreadTypes[type];
     const updatedCount = oldCount + 1;
@@ -122,7 +188,15 @@ class SandwichBuilder extends Component {
   previousStepHandler = () => {
     this.setState({ buildingStep: this.state.buildingStep - 1 });
   };
-
+  purchasingHandler = () => {
+    this.setState({ purchasing: true });
+  };
+  purchasingContinue = () => {
+    alert("Jedziemy dalej");
+  };
+  purchasingCancel = () => {
+    this.setState({ purchasing: false });
+  };
   render() {
     /// Bread
     const disabledBdRemoveInfo = {
@@ -139,6 +213,7 @@ class SandwichBuilder extends Component {
     for (let key in disabledBdAddInfo) {
       disabledBdAddInfo[key] = disabledBdAddInfo[key] >= 1;
     }
+
     /// Ingredients
     const disabledIgRemove = {
       ...this.state.Ingredients
@@ -148,7 +223,23 @@ class SandwichBuilder extends Component {
     for (let key in disabledIgRemove) {
       disabledIgRemove[key] = disabledIgRemove[key] <= 0;
     }
+    /// Sauces
+    const disabledSuRemove = {
+      ...this.state.Sauces
+    };
+    const disabledSuAdd = {
+      ...this.state.Sauces
+    };
+    ///
+    for (let key in disabledSuRemove) {
+      disabledSuRemove[key] = disabledSuRemove[key] <= 0;
+    }
 
+    for (let key in disabledSuAdd) {
+      disabledSuRemove[key] = disabledSuRemove[key] >= 1;
+    }
+
+    ///
     let step = null;
     switch (this.state.buildingStep) {
       case 0:
@@ -173,6 +264,21 @@ class SandwichBuilder extends Component {
             IngredientsTypeRemove={this.removeIngredientsType}
             disabledIgRemoveHandler={disabledIgRemove}
             price={this.state.totalPrice}
+            keepAdding={this.nextStepHandler}
+            moveOn={this.updateMoveOnStateIg}
+          />
+        );
+        break;
+      case 2:
+        step = (
+          <BuildSaucesControls
+            previousStepHandler={this.previousStepHandler}
+            SaucesTypeAdded={this.addSaucesType}
+            SaucesTypeRemove={this.removeSaucesType}
+            disabledSuRemoveHandler={disabledSuRemove}
+            price={this.state.totalPrice}
+            disabledSuAddHandler={disabledSuAdd}
+            ordered={this.purchasingHandler}
           />
         );
         break;
@@ -183,9 +289,20 @@ class SandwichBuilder extends Component {
 
     return (
       <Aux>
+        <Modal show={this.state.purchasing}>
+          <OrderBox
+            BreadTypes={this.state.BreadTypes}
+            Ingredients={this.state.Ingredients}
+            Sauces={this.state.Sauces}
+            purchasingCancel={this.purchasingCancel}
+            purchasingContinue={this.purchasingContinue}
+            price={this.state.totalPrice}
+          />
+        </Modal>
         <Sandwich
           BreadTypes={this.state.BreadTypes}
           Ingredients={this.state.Ingredients}
+          Sauces={this.state.Sauces}
         />
         {step}
       </Aux>
