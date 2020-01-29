@@ -3,20 +3,21 @@ import classes from "./SandwichCheck.module.css";
 import SandwichBreadType from "../SandwichType/SandwichBreadType/SandwichBreadType";
 import SandwichIngredientsType from "../SandwichType/SandwichIngredientsType/SandwichIngredientsType";
 import SandwichSaucesType from "../SandwichType/SandwichSaucesType/SandwichSaucesType";
-const Sandwich = props => {
-  let transformedSaucesType = Object.keys(props.Sauces)
+const SandwichCheck = props => {
+  console.log(props);
+  let transformedIngredientsType = Object.keys(props.Ingredients)
     .map(igKey => {
-      return [...Array(props.Sauces[igKey])].map((_, i) => {
-        return <SandwichSaucesType key={igKey + i} type={igKey} />;
+      return [...Array(props.Ingredients[igKey])].map((_, i) => {
+        return <SandwichIngredientsType key={igKey + i} type={igKey} />;
       });
     })
     .reduce((arr, el) => {
       return arr.concat(el);
     }, []);
-  let transformedIngredientsType = Object.keys(props.Ingredients)
-    .map(igKey => {
-      return [...Array(props.Ingredients[igKey])].map((_, i) => {
-        return <SandwichIngredientsType key={igKey + i} type={igKey} />;
+  let transformedSaucesType = Object.keys(props.Sauces)
+    .map(suKey => {
+      return [...Array(props.Sauces[suKey])].map((_, i) => {
+        return <SandwichSaucesType key={suKey + i} type={suKey} />;
       });
     })
     .reduce((arr, el) => {
@@ -46,4 +47,4 @@ const Sandwich = props => {
     </div>
   );
 };
-export default Sandwich;
+export default SandwichCheck;

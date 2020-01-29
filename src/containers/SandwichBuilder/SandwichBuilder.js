@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import Aux from "../../hoc/Auxiliary";
-import Sandwich from "../../components/Sandwich/SandwichChceck/SandwichCheck";
+import Aux from "../../hoc/Auxiliary/Auxiliary";
+import SandwichCheck from "../../components/Sandwich/SandwichCheck/SandwichCheck";
 import BuildBreadControls from "../../components/Sandwich/BuildControls/BuildBreadControls/BuildBreadControls";
 import PropTypes from "prop-types";
 import BuildIngredientsControls from "../../components/Sandwich/BuildControls/BuildIngredientsControls/BuildIngredientsControls";
 import BuildSaucesControls from "../../components/Sandwich/BuildControls/BuildSaucesControls/BuildSaucesControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderBox from "../../components/Sandwich/OrderBox/OrderBox";
-
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
+import axios from "axios";
 const Prices = {
   wholeGrains: 2.6,
   Wheat: 2,
@@ -192,7 +193,7 @@ class SandwichBuilder extends Component {
     this.setState({ purchasing: true });
   };
   purchasingContinue = () => {
-    alert("Jedziemy dalej");
+    this.props.history.push("/checkout");
   };
   purchasingCancel = () => {
     this.setState({ purchasing: false });
@@ -299,7 +300,7 @@ class SandwichBuilder extends Component {
             price={this.state.totalPrice}
           />
         </Modal>
-        <Sandwich
+        <SandwichCheck
           BreadTypes={this.state.BreadTypes}
           Ingredients={this.state.Ingredients}
           Sauces={this.state.Sauces}
@@ -312,4 +313,5 @@ class SandwichBuilder extends Component {
 SandwichBuilder.propTypes = {
   type: PropTypes.string.isRequired
 };
-export default SandwichBuilder;
+
+export default withErrorHandler(SandwichBuilder, axios);

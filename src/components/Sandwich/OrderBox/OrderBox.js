@@ -1,25 +1,26 @@
 import React from "react";
-import Aux from "../../../hoc/Auxiliary";
+import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import classes from "./OrderBox.module.css";
+
 const OrderBox = props => {
   const BreadSummary = Object.keys(props.BreadTypes).map(btKey => {
     return (
       <li key={btKey}>
-        <span>{btKey}</span>:{props.BreadTypes[btKey]}
+        {btKey}:{props.BreadTypes[btKey]}
       </li>
     );
   });
   const ingredientSummary = Object.keys(props.Ingredients).map(igKey => {
     return (
       <li key={igKey}>
-        <span>{igKey}</span>:{props.Ingredients[igKey]}
+        {igKey}:{props.Ingredients[igKey]}
       </li>
     );
   });
   const SaucesSummary = Object.keys(props.Sauces).map(suKey => {
     return (
       <li key={suKey}>
-        <span>{suKey}</span>:{props.Sauces[suKey]}
+        {suKey}:{props.Sauces[suKey]}
       </li>
     );
   });
@@ -27,23 +28,20 @@ const OrderBox = props => {
   return (
     <Aux>
       <p className={classes.title}>Twoje zamówienie</p>
-      <p className={classes.information}>
-        kosmicznie pyszna kanapka zawierająca
-      </p>
+
       <ul className={classes.list}>{ingredientSummary}</ul>
       <ul className={classes.list}>{BreadSummary}</ul>
       <ul className={classes.list}>{SaucesSummary}</ul>
       <p className={classes.ContinuePurchasing}>Kontynujesz zakupy? </p>
       <p>
-        <strong style={{ fontSize: "1.4rem" }}>
-          {" "}
+        <strong className={classes.Price}>
           Cena: {props.price.toFixed(2)}
         </strong>
       </p>
-      <button className={classes.Continue} onClick={props.purchasingContinue}>
+      <button className={classes.next} onClick={props.purchasingContinue}>
         Kontynuj
       </button>
-      <button className={classes.Cancel} onClick={props.purchasingCancel}>
+      <button className={classes.previous} onClick={props.purchasingCancel}>
         Anuluj
       </button>
     </Aux>

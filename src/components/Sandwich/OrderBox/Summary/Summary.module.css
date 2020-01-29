@@ -1,0 +1,11 @@
+.CheckoutSummary {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+.Sandwich {
+  position: absolute;
+  top: 20rem;
+  right: 15rem;
+  width: 100%;
+}

@@ -1,18 +1,15 @@
 .title {
-  font-size: 3rem;
+  font-size: 4rem;
+  text-align: center;
+  display: inline-block;
   color: black;
+  width: 100%;
 }
 
 .span {
   text-transform: uppercase;
   font-size: 2.1rem;
   font-weight: 400;
-}
-
-.information {
-  font-size: 1.7rem;
-  color: brown;
-  text-transform: uppercase;
 }
 
 .p {
@@ -22,34 +19,58 @@
 .list {
   font-size: 2rem;
   display: inline-block;
+  color: #aa6817;
+  padding-left: 7rem;
 }
 
 .ContinuePurchasing {
-  color: brown;
+  color: rgb(14, 7, 0);
   font-size: 2rem;
+  font-weight: 600;
   text-transform: uppercase;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
 }
 
-.Continue {
+.next {
+  position: absolute;
+  top: 38rem;
+  left: 12rem;
   background-color: transparent;
-  color: rgba(3, 154, 3, 0.7);
-  border: none;
+  background-color: rgb(172, 83, 0);
   outline: none;
   cursor: pointer;
-  font-size: 1.5rem;
-  padding: 1rem;
-  margin: 1rem;
+  font: inherit;
+  padding: 10px;
+  margin: 10px;
   font-weight: bold;
+  font-size: 1.4rem;
+  border-radius: 2rem;
+  color: white;
 }
 
-.Cancel {
+.previous {
+  position: absolute;
+  top: 38rem;
+  left: 27rem;
   background-color: transparent;
-  color: rgba(255, 0, 0, 0.598);
-  border: none;
+  background-color: rgb(14, 0, 0);
   outline: none;
   cursor: pointer;
-  font-size: 1.5rem;
-  padding: 1rem;
-  margin: 1rem;
+  font: inherit;
+  padding: 10px;
+  margin: 10px;
+  color: white;
   font-weight: bold;
+  font-size: 1.4rem;
+  border-radius: 2rem;
+}
+
+.Price {
+  width: 100%;
+  display: inline-block;
+  font-size: 2.2rem;
+  text-align: center;
+  padding-bottom: 9rem;
 }

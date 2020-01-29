@@ -1,9 +1,10 @@
 .Content {
   position: fixed;
   height: 4rem;
-  background-color: rgb(22, 10, 4);
+  background-color: rgba(22, 10, 4, 0.8);
   width: 100%;
-  padding-bottom: 3rem;
+  padding-bottom: 3em;
+  box-shadow: 0 0.3rem 0 rgba(7, 3, 1, 0.8);
   top: 0;
   left: 0;
   justify-content: space-between;

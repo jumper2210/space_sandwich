@@ -9,9 +9,7 @@ const controls = [
 
 const BuildSaucesControls = props => (
   <div className={classes.BuildSaucesControls}>
-    <p className={classes.Price}>
-      Aktualna cena: <strong>{props.price.toFixed(2)}</strong>
-    </p>
+    <p className={classes.Price}>Aktualna cena: {props.price.toFixed(2)}</p>
     {controls.map(ctrl => (
       <BuildSaucesControl
         key={ctrl.label}
