@@ -2,25 +2,9 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Summary from "../../components/Sandwich/OrderBox/Summary/Summary";
 import Contact from "./Contact/Contact";
+import { connect } from "react-redux";
+
 class Checkout extends Component {
-  state = {
-    BreadTypes: {
-      wholeGrains: 0,
-      Wheat: 0,
-      NoGluten: 0
-    },
-    Ingredients: {
-      Meat: 0,
-      Cheese: 0,
-      Salad: 0,
-      Bacon: 0
-    },
-    Sauces: {
-      Space: 0,
-      Barbecue: 0,
-      Ketchup: 0
-    }
-  };
   checkoutCancelledHandler = () => {
     this.props.history.goBack();
   };
@@ -32,9 +16,9 @@ class Checkout extends Component {
     return (
       <div>
         <Summary
-          BreadTypes={this.state.BreadTypes}
-          Ingredients={this.state.Ingredients}
-          Sauces={this.state.Sauces}
+          breadTypes={this.props.breadTypes}
+          ingredients={this.props.ingredients}
+          sauces={this.props.sauces}
           checkoutCancelled={this.checkoutCancelledHandler}
           checkoutContinued={this.checkoutContinuedHandler}
         />
@@ -42,10 +26,10 @@ class Checkout extends Component {
           path={this.props.match.path + "/contact"}
           render={props => (
             <Contact
-              Ingredients={this.state.Ingredients}
-              BreadTypes={this.state.BreadTypes}
-              Sauces={this.state.Sauces}
-              price={this.state.totalPrice}
+              ingredients={this.props.ingredients}
+              breadTypes={this.props.breadTypes}
+              sauces={this.props.sauces}
+              price={this.props.price}
               {...props}
             />
           )}
@@ -54,5 +38,12 @@ class Checkout extends Component {
     );
   }
 }
-
-export default Checkout;
+const mapStateToProps = state => {
+  return {
+    ingredients: state.sandwichBuilder.ingredients,
+    breadTypes: state.sandwichBuilder.breadTypes,
+    sauces: state.sandwichBuilder.sauces,
+    price: state.sandwichBuilder.totalPrice
+  };
+};
+export default connect(mapStateToProps)(Checkout);

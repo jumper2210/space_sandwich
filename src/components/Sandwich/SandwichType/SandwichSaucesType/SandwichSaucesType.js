@@ -6,13 +6,13 @@ const SandwichSaucesType = props => {
   let Sauces = null;
 
   switch (props.type) {
-    case "Space":
+    case "space":
       Sauces = <div className={classes.Space} />;
       break;
-    case "Barbecue":
+    case "barbecue":
       Sauces = <div className={classes.Barbecue} />;
       break;
-    case "Ketchup":
+    case "ketchup":
       Sauces = <div className={classes.Ketchup} />;
       break;
 

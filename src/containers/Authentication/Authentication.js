@@ -1,24 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import Input from "../../components/UI/Input/Input";
-
 import classes from "./Authentication.module.css";
 import * as actions from "../../store/actions/index.js";
 
 class Authentication extends Component {
   state = {
     controls: {
-      email: {
+      username: {
         elementType: "input",
         elementConfig: {
-          type: "email",
-          placeholder: "Mail Address"
+          type: "text",
+          placeholder: "Nazwa uzytkownika"
         },
         value: "",
         validation: {
           required: true,
-          isEmail: true
+          minLength: 5
         },
         valid: false,
         touched: false
@@ -27,7 +25,7 @@ class Authentication extends Component {
         elementType: "input",
         elementConfig: {
           type: "password",
-          placeholder: "Password"
+          placeholder: "Twoje haslo"
         },
         value: "",
         validation: {
@@ -37,7 +35,8 @@ class Authentication extends Component {
         valid: false,
         touched: false
       }
-    }
+    },
+    isSignup: true
   };
 
   checkValidity(value, rules) {
@@ -90,8 +89,9 @@ class Authentication extends Component {
   submitHandler = event => {
     event.preventDefault();
     this.props.onAuth(
-      this.state.controls.email.value,
-      this.state.controls.password.value
+      this.state.controls.username.value,
+      this.state.controls.password.value,
+      this.state.isSignup
     );
   };
 
@@ -130,7 +130,7 @@ class Authentication extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password) => dispatch(actions.auth(email, password))
+    onAuth: (username, password) => dispatch(actions.auth(username, password))
   };
 };
 

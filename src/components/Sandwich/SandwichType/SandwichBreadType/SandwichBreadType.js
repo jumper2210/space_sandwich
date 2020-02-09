@@ -14,14 +14,14 @@ const SandwichBreadType = props => {
         </div>
       );
       break;
-    case "Wheat":
+    case "wheat":
       BreadType = (
         <div className={classes.breadTopWheat}>
           <div className={classes.breadBottomWheat}></div>
         </div>
       );
       break;
-    case "NoGluten":
+    case "noGluten":
       BreadType = (
         <div className={classes.breadTopNoGluten}>
           <div className={classes.seam}></div>

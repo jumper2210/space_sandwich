@@ -2,10 +2,10 @@ import React from "react";
 import classes from "./BuildIngredientsControls.module.css";
 import BuildIngredientsControl from "./BuildIngredientsControl/BuildIngredientsControl";
 const controls = [
-  { label: "mięso", type: "Meat" },
-  { label: "ser", type: "Cheese" },
-  { label: "sałata", type: "Salad" },
-  { label: "bekon", type: "Bacon" }
+  { label: "mięso", type: "meat" },
+  { label: "ser", type: "cheese" },
+  { label: "sałata", type: "salad" },
+  { label: "bekon", type: "bacon" }
 ];
 
 const BuildIngredientsControls = props => (
@@ -21,7 +21,7 @@ const BuildIngredientsControls = props => (
         remove={() => {
           props.IngredientsTypeRemove(ctrl.type);
         }}
-        disabledIgRemoveHandler={props.disabledIgRemoveHandler[ctrl.type]}
+        disabledRemove={props.disabledRemove[ctrl.type]}
       />
     ))}
     <button

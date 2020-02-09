@@ -8,13 +8,13 @@ const BuildControl = props => {
       <button
         className={classes.Pick}
         onClick={props.clicked}
-        disabled={props.disabledBdAddInfoHandler}
+        disabled={props.tooMuchBdHandler}
       >
         Wybierz
       </button>
       <button
         className={classes.Cancel}
-        disabled={props.disabledBdRemoveHandler}
+        disabled={props.disabledRemove}
         onClick={props.remove}
       >
         Anuluj

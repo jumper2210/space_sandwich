@@ -97,7 +97,7 @@ class ContactData extends Component {
       orderData: formData
     };
     axios
-      .post("/zamowienie.json", order)
+      .post("/zamowienia.json", order)
       .then(response => {
         this.setState({ loading: false });
         this.props.history.push("/");

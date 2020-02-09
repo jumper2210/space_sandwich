@@ -11,7 +11,7 @@ const BuildSauceControl = props => {
       <button
         className={classes.Cancel}
         onClick={props.remove}
-        disabled={props.disabledSuRemoveHandler}
+        disabled={props.disabledSu}
       >
         Mniej
       </button>

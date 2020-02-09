@@ -2,9 +2,9 @@ import React from "react";
 import classes from "./BuildSaucesControls.module.css";
 import BuildSaucesControl from "./BuildSaucesControl.js/BuildSaucesControl";
 const controls = [
-  { label: "Kosmiczny", type: "Space" },
-  { label: "Barbecue", type: "Barbecue" },
-  { label: "ketchup", type: "Ketchup" }
+  { label: "Kosmiczny", type: "space" },
+  { label: "Barbecue", type: "barbecue" },
+  { label: "ketchup", type: "ketchup" }
 ];
 
 const BuildSaucesControls = props => (
@@ -15,12 +15,12 @@ const BuildSaucesControls = props => (
         key={ctrl.label}
         label={ctrl.label}
         clicked={() => {
-          props.SaucesTypeAdded(ctrl.type);
+          props.SauceTypeAdded(ctrl.type);
         }}
         remove={() => {
-          props.SaucesTypeRemove(ctrl.type);
+          props.SauceTypeRemove(ctrl.type);
         }}
-        disabledSuRemoveHandler={props.disabledSuRemoveHandler[ctrl.type]}
+        disabledSu={props.disabledSuRemove[ctrl.type]}
       />
     ))}
     <button className={classes.KeepAddingSauces} onClick={props.ordered}>

@@ -6,7 +6,7 @@ const NavigationItems = props => (
     <NavigationItem link="/" active>
       Twoja kanapka
     </NavigationItem>
-    <NavigationItem link="/">Zamówienia</NavigationItem>
+    <NavigationItem link="/orders">Zamówienia</NavigationItem>
     <NavigationItem link="/auth">Logowanie</NavigationItem>
   </ul>
 );

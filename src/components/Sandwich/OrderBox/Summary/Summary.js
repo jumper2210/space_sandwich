@@ -10,9 +10,9 @@ const checkoutSummary = props => {
       <h1>We hope it tastes well!</h1>
       <div className={classes.Sandwich}>
         <SandwichCheck
-          BreadTypes={props.BreadTypes}
-          Ingredients={props.Ingredients}
-          Sauces={props.Sauces}
+          breadTypes={props.breadTypes}
+          ingredients={props.ingredients}
+          sauces={props.sauces}
         />
       </div>
       <Button btnType="Danger" clicked={props.checkoutCancelled}>

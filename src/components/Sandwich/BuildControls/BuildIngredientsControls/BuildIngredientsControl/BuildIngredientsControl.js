@@ -11,7 +11,7 @@ const BuildIngredientsControl = props => {
       <button
         className={classes.Cancel}
         onClick={props.remove}
-        disabled={props.disabledIgRemoveHandler}
+        disabled={props.disabledRemove}
       >
         Mniej
       </button>

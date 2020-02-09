@@ -3,24 +3,24 @@ import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import classes from "./OrderBox.module.css";
 
 const OrderBox = props => {
-  const BreadSummary = Object.keys(props.BreadTypes).map(btKey => {
+  const BreadSummary = Object.keys(props.breadTypes).map(btKey => {
     return (
       <li key={btKey}>
-        {btKey}:{props.BreadTypes[btKey]}
+        {btKey}:{props.breadTypes[btKey]}
       </li>
     );
   });
-  const ingredientSummary = Object.keys(props.Ingredients).map(igKey => {
+  const ingredientSummary = Object.keys(props.ingredients).map(igKey => {
     return (
       <li key={igKey}>
-        {igKey}:{props.Ingredients[igKey]}
+        {igKey}:{props.ingredients[igKey]}
       </li>
     );
   });
-  const SaucesSummary = Object.keys(props.Sauces).map(suKey => {
+  const SaucesSummary = Object.keys(props.sauces).map(suKey => {
     return (
       <li key={suKey}>
-        {suKey}:{props.Sauces[suKey]}
+        {suKey}:{props.sauces[suKey]}
       </li>
     );
   });
