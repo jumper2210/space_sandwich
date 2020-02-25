@@ -9,6 +9,8 @@ This application gives possibility to bulid and order a tasty sandwich. In the n
 - & other ...
 ## 
 Server side -> https://github.com/jumper2210/SpaceSandwich_ServerSide
+#
+Author: Krzysztof Skoczek
 
 
 
