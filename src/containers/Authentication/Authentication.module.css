@@ -3,12 +3,13 @@
   top: 10rem;
   left: 20rem;
   margin: 10rem auto;
-  width: 80%;
+  width: 100%;
   text-align: center;
   box-shadow: 0 0.2rem 0.3rem #ccc;
   border: 0.1rem solid #eee;
-  padding: 1rem;
+  padding: 3rem;
   box-sizing: border-box;
+  height: 35rem;
 }
 
 @media (min-width: 60rem) {
@@ -17,7 +18,7 @@
   }
 }
 
-.BtnAuth {
+.btnAuth {
   background-color: transparent;
   border: none;
   color: white;
@@ -29,6 +30,25 @@
   font-weight: bold;
   font-size: 1.4rem;
   position: absolute;
-  top: 13rem;
+  top: 18rem;
   left: 17rem;
+}
+
+.textAuth {
+  font-size: 2rem;
+  background-color: transparent;
+  color: rgb(255, 143, 15);
+  position: absolute;
+  top: 25rem;
+  left: 8rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.titleAuth {
+  font-size: 1.6rem;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
 }

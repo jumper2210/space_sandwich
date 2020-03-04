@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import classes from "./Contact.module.css";
-import axios from "axios";
+import axios from "../../../axios-service";
 import Input from "../../../components/UI/Input/Input";
-
+import { connect } from "react-redux";
+import * as actions from "../../../store/actions/index";
+import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
 class ContactData extends Component {
   state = {
     orderForm: {
@@ -49,7 +51,7 @@ class ContactData extends Component {
         valid: false,
         touched: false
       },
-      country: {
+      city: {
         elementType: "input",
         elementConfig: {
           type: "text",
@@ -77,12 +79,11 @@ class ContactData extends Component {
       }
     },
     formIsValid: false,
-    loading: false
+    ordered: false
   };
 
   orderHandler = event => {
     event.preventDefault();
-    this.setState({ loading: true });
     const formData = {};
     for (let formElementIdentifier in this.state.orderForm) {
       formData[formElementIdentifier] = this.state.orderForm[
@@ -90,21 +91,15 @@ class ContactData extends Component {
       ].value;
     }
     const order = {
-      ingredients: this.props.Ingredients,
-      breadTypes: this.props.BreadTypes,
-      sauces: this.props.Sauces,
-      price: this.props.price,
+      ingredients: this.props.ingredients,
+      breadTypes: this.props.breadTypes,
+      sauces: this.props.sauces,
+      // price: this.props.price,
+      userId: this.props.userId,
       orderData: formData
     };
-    axios
-      .post("/zamowienia.json", order)
-      .then(response => {
-        this.setState({ loading: false });
-        this.props.history.push("/");
-      })
-      .catch(error => {
-        this.setState({ loading: false });
-      });
+    this.props.onOrderSandwich(order, this.props.token);
+    this.setState({ ordered: true });
   };
 
   checkValidity(value, rules) {
@@ -185,7 +180,7 @@ class ContactData extends Component {
         </button>
       </form>
     );
-    if (this.state.loading) {
+    if (this.props.loading) {
       form = <Spinner />;
     }
     return (
@@ -198,5 +193,26 @@ class ContactData extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    ingredients: state.sandwichBuilder.ingredients,
+    sauces: state.sandwichBuilder.sauces,
+    breadTypes: state.sandwichBuilder.breadTypes,
+    // price: state.sandwichBuilder.totalPrice,
+    loading: state.order.loading,
+    token: state.auth.token,
+    userId: state.auth.userId
+  };
+};
 
-export default ContactData;
+const mapDispatchToProps = dispatch => {
+  return {
+    onOrderSandwich: (orderData, token) =>
+      dispatch(actions.purchaseSandwich(orderData, token))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(ContactData, axios));

@@ -6,10 +6,14 @@ import "./Layout.css";
 const Layout = props => {
   return (
     <Aux>
-      <Toolbar />
+      <Toolbar isAuth={props.isAuthenticated} />
       <main className="Content">{props.children}</main>
     </Aux>
   );
 };
-
-export default Layout;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  };
+};
+export default connect(mapStateToProps)(Layout);

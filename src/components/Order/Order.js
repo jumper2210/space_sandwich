@@ -80,10 +80,7 @@ const order = props => {
     <div className={classes.Order}>
       <p>Skladniki: {ingredientOutput}</p>
       <p>Sosy: {sauceOutput}</p>
-      <p>Rodzaj pieczywa: {breadTypeOutput}</p>
-      <p>
-        Price: <strong>USD {Number.parseFloat(props.price).toFixed(2)}</strong>
-      </p>
+      <p>Pieczywko: {breadTypeOutput}</p>
     </div>
   );
 };

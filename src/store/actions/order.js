@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "axios";
+import axios from "../../axios-service";
 
 export const purchaseSandwichSuccess = (id, orderData) => {
   return {
@@ -25,11 +25,19 @@ export const purchaseSandwichStart = () => {
 export const purchaseSandwich = (orderData, token) => {
   return dispatch => {
     dispatch(purchaseSandwichStart());
+    const orderDataArray = {
+      ...orderData
+    };
+    const config = {
+      headers: {
+        Authorization: "Bearer ".concat(token),
+        "Content-Type": "application/json"
+      }
+    };
     axios
-      .post("/zamowienie.json?auth=" + token, orderData)
+      .post("/zamowienia", orderDataArray, config)
       .then(response => {
-        console.log(response.data);
-        dispatch(purchaseSandwichSuccess(response.data.name, orderData));
+        dispatch(purchaseSandwichSuccess(response.data.id, orderDataArray));
       })
       .catch(error => {
         dispatch(purchaseSandwichFail(error));
@@ -63,19 +71,22 @@ export const fetchOrdersStart = () => {
   };
 };
 
-export const fetchOrders = (token, userId) => {
+export const fetchOrders = token => {
   return dispatch => {
     dispatch(fetchOrdersStart());
-    const queryParams =
-      "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
+    const config = {
+      headers: {
+        Authorization: "Bearer ".concat(token),
+        "Content-Type": "application/json"
+      }
+    };
     axios
-      .get("/zamowienie.json" + queryParams)
+      .get("/zamowienia", config)
       .then(res => {
         const fetchedOrders = [];
         for (let key in res.data) {
           fetchedOrders.push({
-            ...res.data[key],
-            id: key
+            ...res.data[key]
           });
         }
         dispatch(fetchOrdersSuccess(fetchedOrders));

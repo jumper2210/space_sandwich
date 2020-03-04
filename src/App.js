@@ -1,40 +1,66 @@
-import React, { Component } from "react";
+import React, { useEffect, Suspense } from "react";
 import Layout from "./components/Layout/Layout";
 import "./App.css";
 import SandwichBuilder from "./containers/SandwichBuilder/SandwichBuilder";
-import Checkout from "./containers/Checkout/Checkout";
 import { connect } from "react-redux";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
-import Orders from "./containers/Orders/Orders";
-import Authentication from "./containers/Authentication/Authentication";
 import Logout from "./containers/Authentication/Logout/Logout";
 import * as actions from "./store/actions/index";
 
-class App extends Component {
-  render() {
-    let routes = (
+const Checkout = React.lazy(() => {
+  return import("./containers/Checkout/Checkout");
+});
+
+const Orders = React.lazy(() => {
+  return import("./containers/Orders/Orders");
+});
+
+const Authentication = React.lazy(() => {
+  return import("./containers/Authentication/Authentication");
+});
+
+const App = props => {
+  useEffect(() => {
+    props.onTryAutoSignup();
+  }, []);
+  let routes = (
+    <Switch>
+      <Route path="/auth" render={props => <Authentication {...props} />} />
+      <Route path="/" component={SandwichBuilder} />
+      <Redirect to="/" />
+    </Switch>
+  );
+  if (props.isAuthenticated) {
+    routes = (
       <Switch>
-        <Route path="/auth" component={Authentication} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/orders" component={Orders} />
+        <Route path="/checkout" render={props => <Checkout {...props} />} />
+        <Route path="/orders" render={props => <Orders {...props} />} />
         <Route path="/logout" component={Logout} />
+        <Route path="/auth" render={props => <Authentication {...props} />} />
         <Route path="/" exact component={SandwichBuilder} />
         <Redirect to="/" />
       </Switch>
     );
-
-    return (
-      <div>
-        <Layout>{routes}</Layout>
-      </div>
-    );
   }
-}
 
+  return (
+    <div>
+      <Layout>
+        <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
+      </Layout>
+    </div>
+  );
+};
+
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     onTryAutoSignup: () => dispatch(actions.authCheckState())
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

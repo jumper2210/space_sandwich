@@ -26,7 +26,7 @@ export const authFail = error => {
 export const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("expirationDate");
-  localStorage.removeItem("userId");
+  localStorage.removeItem("localId");
   return {
     type: actionTypes.AUTH_LOGOUT
   };
@@ -49,7 +49,7 @@ export const auth = (username, password, isSignup) => {
     };
     let url = "http://127.0.0.1:8080/rejestracja";
     if (!isSignup) {
-      url = "http://localhost:8080/uwierzytelnienie";
+      url = "http://127.0.0.1:8080/uwierzytelnienie";
     }
     axios
       .post(url, authData)

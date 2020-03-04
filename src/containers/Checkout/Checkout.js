@@ -43,7 +43,8 @@ const mapStateToProps = state => {
     ingredients: state.sandwichBuilder.ingredients,
     breadTypes: state.sandwichBuilder.breadTypes,
     sauces: state.sandwichBuilder.sauces,
-    price: state.sandwichBuilder.totalPrice
+    price: state.sandwichBuilder.totalPrice,
+    purchased: state.order.purchased
   };
 };
 export default connect(mapStateToProps)(Checkout);

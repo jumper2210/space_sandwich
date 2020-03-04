@@ -60,20 +60,20 @@ class SandwichBuilder extends Component {
   };
   purchasingContinue = () => {
     this.props.history.push("/checkout");
+    this.props.onInitPurchase();
   };
   purchasingCancel = () => {
     this.setState({ purchasing: false });
   };
 
   render() {
-    /// Bread
     const notEnoughBd = {
       ...this.props.breadTypes
     };
     const tooMuchBd = {
       ...this.props.breadTypes
     };
-    ///
+
     for (let key in notEnoughBd) {
       notEnoughBd[key] = notEnoughBd[key] <= 0;
     }
@@ -82,7 +82,6 @@ class SandwichBuilder extends Component {
       tooMuchBd[key] = tooMuchBd[key] >= 1;
     }
 
-    /// Ingredients
     const notEnoughIg = {
       ...this.props.ingredients
     };
@@ -91,13 +90,10 @@ class SandwichBuilder extends Component {
       notEnoughIg[key] = notEnoughIg[key] <= 0;
     }
 
-    ///
-    /// Sauces
     const notEnoughSu = {
-      ...this.state.sauces
+      ...this.props.sauces
     };
 
-    ///
     for (let key in notEnoughSu) {
       notEnoughSu[key] = notEnoughSu[key] <= 0;
     }

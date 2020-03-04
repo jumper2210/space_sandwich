@@ -12,7 +12,7 @@ const purchaseInit = (state, action) => {
 };
 
 const purchaseSandwichStart = (state, action) => {
-  return updateObject(state, { loading: false });
+  return updateObject(state, { loading: true });
 };
 
 const purchaseSandwichSuccess = (state, action) => {

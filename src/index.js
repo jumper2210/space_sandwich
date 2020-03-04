@@ -10,11 +10,16 @@ import sandwichBuilderReducer from "./store/reducers/sandwichBuilder";
 import thunk from "redux-thunk";
 import authReducer from "./store/reducers/auth";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const composeEnhancers =
+  process.env.NODE_ENV === "development"
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : null || compose;
+
 const rootReducer = combineReducers({
   sandwichBuilder: sandwichBuilderReducer,
   order: orderReducer,
-  authentication: authReducer
+  auth: authReducer
 });
 const store = createStore(
   rootReducer,
