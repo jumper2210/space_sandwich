@@ -11,7 +11,6 @@ const controls = [
 const BuildBreadControls = props => (
   <div className={classes.BuildBreadControls}>
     <p className={classes.Price}>Aktualna cena: {props.price.toFixed(2)}</p>
-
     {controls.map(ctrl => (
       <BuildBreadControl
         key={ctrl.label}
@@ -22,6 +21,7 @@ const BuildBreadControls = props => (
         tooMuchBdHandler={props.tooMuchBdHandler[ctrl.type]}
       />
     ))}
+
     <button
       className={classes.KeepAdding}
       disabled={!props.purchasable}

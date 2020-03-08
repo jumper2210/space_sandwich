@@ -6,7 +6,8 @@ const initialState = {
   userId: null,
   error: null,
   loading: false,
-  authRedirectPath: "/"
+  authRedirectPath: "/",
+  roles: null
 };
 
 const authStart = (state, action) => {
@@ -18,7 +19,8 @@ const authSuccess = (state, action) => {
     token: action.idToken,
     userId: action.userId,
     error: null,
-    loading: false
+    loading: false,
+    roles: action.roles
   });
 };
 
@@ -36,6 +38,18 @@ const authLogout = (state, action) => {
 const setAuthRedirectPath = (state, action) => {
   return updateObject(state, { authRedirectPath: action.path });
 };
+const fetchRoleSuccess = (state, action) => {
+  return updateObject(state, {
+    roles: action.roles,
+    loading: false
+  });
+};
+const fetchRoleFail = (state, action) => {
+  return updateObject(state, { loading: false });
+};
+const fetchRoleStart = (state, action) => {
+  return updateObject(state, { loading: true });
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -49,6 +63,12 @@ const reducer = (state = initialState, action) => {
       return authLogout(state, action);
     case actionTypes.SET_AUTH_REDIRECT_PATH:
       return setAuthRedirectPath(state, action);
+    case actionTypes.FETCH_ROLE_SUCCESS:
+      return fetchRoleSuccess(state, action);
+    case actionTypes.FETCH_ROLE_FAIL:
+      return fetchRoleFail(state, action);
+    case actionTypes.FETCH_ROLE_START:
+      return fetchRoleStart(state, action);
     default:
       return state;
   }

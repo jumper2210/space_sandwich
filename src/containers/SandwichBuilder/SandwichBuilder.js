@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Aux from "../../hoc/Auxiliary/Auxiliary";
 import SandwichCheck from "../../components/Sandwich/SandwichCheck/SandwichCheck";
 import BuildBreadControls from "../../components/Sandwich/BuildControls/BuildBreadControls/BuildBreadControls";
@@ -11,14 +11,17 @@ import axios from "axios";
 import * as actions from "../../store/actions/index";
 import { connect } from "react-redux";
 
-class SandwichBuilder extends Component {
-  state = {
-    purchasing: false,
-    buildingStep: 0,
-    moveOn: false
-  };
+const SandwichBuilder = props => {
+  const [purchasing, setPurchasing] = useState(false);
+  const [buildingStep, setBuildingStep] = useState(0);
+  const [moveOn, setMoveOn] = useState(false);
 
-  updateMoveOnState(breadTypes) {
+  const { onFetchRole } = props;
+  useEffect(() => {
+    props.onFetchRole(props.token);
+  }, [onFetchRole]);
+
+  const updateMoveOnState = breadTypes => {
     let sum = Object.keys(breadTypes)
       .map(btKey => {
         return breadTypes[btKey];
@@ -27,8 +30,8 @@ class SandwichBuilder extends Component {
         return sum + el;
       }, 0);
     return sum > 0;
-  }
-  updateMoveOnStateIg(ingredients) {
+  };
+  const updateMoveOnStateIg = ingredients => {
     let sum = Object.keys(ingredients)
       .map(btKey => {
         return ingredients[btKey];
@@ -37,8 +40,9 @@ class SandwichBuilder extends Component {
         return sum + el;
       }, 0);
     return sum > 0;
-  }
-  updateMoveOnStateSu(sauces) {
+  };
+
+  const updateMoveOnStateSu = sauces => {
     let sum = Object.keys(sauces)
       .map(suKey => {
         return sauces[suKey];
@@ -46,132 +50,132 @@ class SandwichBuilder extends Component {
       .reduce((sum, el) => {
         return sum + el;
       }, 0);
-    this.setState({ moveOn: sum > 0 });
+    setMoveOn(sum > 0);
+  };
+
+  const nextStepHandler = () => {
+    setBuildingStep(buildingStep + 1);
+  };
+  const previousStepHandler = () => {
+    setBuildingStep(buildingStep - 1);
+  };
+  const purchasingHandler = () => {
+    setPurchasing(true);
+  };
+  const purchasingContinue = () => {
+    props.history.push("/checkout");
+    props.onInitPurchase();
+  };
+  const purchasingCancel = () => {
+    setPurchasing(false);
+  };
+
+  const notEnoughBd = {
+    ...props.breadTypes
+  };
+  const tooMuchBd = {
+    ...props.breadTypes
+  };
+
+  for (let key in notEnoughBd) {
+    notEnoughBd[key] = notEnoughBd[key] <= 0;
   }
 
-  nextStepHandler = () => {
-    this.setState({ buildingStep: this.state.buildingStep + 1 });
-  };
-  previousStepHandler = () => {
-    this.setState({ buildingStep: this.state.buildingStep - 1 });
-  };
-  purchasingHandler = () => {
-    this.setState({ purchasing: true });
-  };
-  purchasingContinue = () => {
-    this.props.history.push("/checkout");
-    this.props.onInitPurchase();
-  };
-  purchasingCancel = () => {
-    this.setState({ purchasing: false });
+  for (let key in tooMuchBd) {
+    tooMuchBd[key] = tooMuchBd[key] >= 1;
+  }
+
+  const notEnoughIg = {
+    ...props.ingredients
   };
 
-  render() {
-    const notEnoughBd = {
-      ...this.props.breadTypes
-    };
-    const tooMuchBd = {
-      ...this.props.breadTypes
-    };
+  for (let key in notEnoughIg) {
+    notEnoughIg[key] = notEnoughIg[key] <= 0;
+  }
 
-    for (let key in notEnoughBd) {
-      notEnoughBd[key] = notEnoughBd[key] <= 0;
-    }
+  const notEnoughSu = {
+    ...props.sauces
+  };
 
-    for (let key in tooMuchBd) {
-      tooMuchBd[key] = tooMuchBd[key] >= 1;
-    }
-
-    const notEnoughIg = {
-      ...this.props.ingredients
-    };
-
-    for (let key in notEnoughIg) {
-      notEnoughIg[key] = notEnoughIg[key] <= 0;
-    }
-
-    const notEnoughSu = {
-      ...this.props.sauces
-    };
-
-    for (let key in notEnoughSu) {
-      notEnoughSu[key] = notEnoughSu[key] <= 0;
-    }
-    let step = null;
-    switch (this.state.buildingStep) {
-      case 0:
-        step = (
-          <BuildBreadControls
-            BreadTypeAdded={this.props.onBreadTypeAdded}
-            BreadTypeRemove={this.props.onBreadTypeRemoved}
-            moveOn={this.state.moveOn}
-            price={this.props.price}
-            keepAdding={this.nextStepHandler}
-            purchasable={this.updateMoveOnState(this.props.breadTypes)}
-            disabledRemove={notEnoughBd}
-            tooMuchBdHandler={tooMuchBd}
-          />
-        );
-        break;
-
-      case 1:
-        step = (
-          <BuildIngredientsControls
-            previousStepHandler={this.previousStepHandler}
-            IngredientsTypeAdded={this.props.onIngredientAdded}
-            IngredientsTypeRemove={this.props.onIngredientRemoved}
-            disabledRemove={notEnoughIg}
-            price={this.props.price}
-            keepAdding={this.nextStepHandler}
-            moveOn={this.updateMoveOnStateIg}
-          />
-        );
-        break;
-      case 2:
-        step = (
-          <BuildSaucesControls
-            previousStepHandler={this.previousStepHandler}
-            SauceTypeAdded={this.props.onSauceAdded}
-            SauceTypeRemove={this.props.onSauceRemoved}
-            disabledSuRemove={notEnoughSu}
-            price={this.props.price}
-            ordered={this.purchasingHandler}
-          />
-        );
-        break;
-      default:
-        step = null;
-    }
-
-    return (
-      <Aux>
-        <Modal show={this.state.purchasing}>
-          <OrderBox
-            breadTypes={this.props.breadTypes}
-            ingredients={this.props.ingredients}
-            sauces={this.props.sauces}
-            purchasingCancel={this.purchasingCancel}
-            purchasingContinue={this.purchasingContinue}
-            price={this.props.price}
-          />
-        </Modal>
-        <SandwichCheck
-          breadTypes={this.props.breadTypes}
-          ingredients={this.props.ingredients}
-          sauces={this.props.sauces}
+  for (let key in notEnoughSu) {
+    notEnoughSu[key] = notEnoughSu[key] <= 0;
+  }
+  let step = null;
+  switch (buildingStep) {
+    case 0:
+      step = (
+        <BuildBreadControls
+          BreadTypeAdded={props.onBreadTypeAdded}
+          BreadTypeRemove={props.onBreadTypeRemoved}
+          moveOn={moveOn}
+          price={props.price}
+          keepAdding={nextStepHandler}
+          purchasable={updateMoveOnState(props.breadTypes)}
+          disabledRemove={notEnoughBd}
+          tooMuchBdHandler={tooMuchBd}
         />
-        {step}
-      </Aux>
-    );
+      );
+      break;
+
+    case 1:
+      step = (
+        <BuildIngredientsControls
+          previousStepHandler={previousStepHandler}
+          IngredientsTypeAdded={props.onIngredientAdded}
+          IngredientsTypeRemove={props.onIngredientRemoved}
+          disabledRemove={notEnoughIg}
+          price={props.price}
+          keepAdding={nextStepHandler}
+          moveOn={updateMoveOnStateIg}
+        />
+      );
+      break;
+    case 2:
+      step = (
+        <BuildSaucesControls
+          previousStepHandler={previousStepHandler}
+          SauceTypeAdded={props.onSauceAdded}
+          SauceTypeRemove={props.onSauceRemoved}
+          disabledSuRemove={notEnoughSu}
+          price={props.price}
+          ordered={purchasingHandler}
+        />
+      );
+      break;
+    default:
+      step = null;
   }
-}
+
+  return (
+    <Aux>
+      <Modal show={purchasing}>
+        <OrderBox
+          breadTypes={props.breadTypes}
+          ingredients={props.ingredients}
+          sauces={props.sauces}
+          purchasingCancel={purchasingCancel}
+          purchasingContinue={purchasingContinue}
+          price={props.price}
+        />
+      </Modal>
+      <SandwichCheck
+        breadTypes={props.breadTypes}
+        ingredients={props.ingredients}
+        sauces={props.sauces}
+      />
+      {step}
+    </Aux>
+  );
+};
+
 const mapStateToProps = state => {
   return {
     ingredients: state.sandwichBuilder.ingredients,
     breadTypes: state.sandwichBuilder.breadTypes,
     sauces: state.sandwichBuilder.sauces,
     price: state.sandwichBuilder.totalPrice,
-    error: state.sandwichBuilder.error
+    error: state.sandwichBuilder.error,
+    token: state.auth.token
   };
 };
 
@@ -187,7 +191,8 @@ const mapDispatchToProps = dispatch => {
     onSauceRemoved: suName => dispatch(actions.removeSauce(suName)),
 
     onBreadTypeAdded: bdName => dispatch(actions.addBreadTypes(bdName)),
-    onBreadTypeRemoved: bdName => dispatch(actions.removeBreadTypes(bdName))
+    onBreadTypeRemoved: bdName => dispatch(actions.removeBreadTypes(bdName)),
+    onFetchRole: token => dispatch(actions.fetchRole(token))
   };
 };
 export default connect(

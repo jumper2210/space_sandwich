@@ -82,7 +82,7 @@ const setIngredients = (state, action) => {
 const fetchIngredientsFailed = (state, action) => {
   return updateObject(state, { error: true });
 };
-///////////// ing
+
 const addSauce = (state, action) => {
   const updatedSauce = {
     [action.sauceName]: state.sauces[action.sauceName] + 1
@@ -145,7 +145,6 @@ const removeBreadTypes = (state, action) => {
 const fetchBreadTypesFailed = (state, action) => {
   return updateObject(state, { error: true });
 };
-///////////// sauces
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

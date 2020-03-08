@@ -32,7 +32,7 @@ const Authentication = props => {
       value: "",
       validation: {
         required: true,
-        minLength: 6
+        minLength: 3
       },
       valid: false,
       touched: false

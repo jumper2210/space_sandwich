@@ -7,6 +7,10 @@ import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import Logout from "./containers/Authentication/Logout/Logout";
 import * as actions from "./store/actions/index";
 
+const AdminView = React.lazy(() => {
+  return import("./containers/AdminView/AdminView");
+});
+
 const Checkout = React.lazy(() => {
   return import("./containers/Checkout/Checkout");
 });
@@ -33,6 +37,7 @@ const App = props => {
   if (props.isAuthenticated) {
     routes = (
       <Switch>
+        <Route path="/adminView" render={props => <AdminView {...props} />} />
         <Route path="/checkout" render={props => <Checkout {...props} />} />
         <Route path="/orders" render={props => <Orders {...props} />} />
         <Route path="/logout" component={Logout} />
