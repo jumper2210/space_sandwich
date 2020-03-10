@@ -4,7 +4,7 @@ import NavigationItems from "../../components/NavigationItems/NavigationItems";
 const Toolbar = props => {
   return (
     <span className={classes.Content}>
-      <NavigationItems isAuthenticated={props.isAuth} />
+      <NavigationItems isAuthenticated={props.isAuth} isAdmin={props.isAdmin} />
     </span>
   );
 };

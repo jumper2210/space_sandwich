@@ -6,14 +6,15 @@ import "./Layout.css";
 const Layout = props => {
   return (
     <Aux>
-      <Toolbar isAuth={props.isAuthenticated} />
+      <Toolbar isAuth={props.isAuthenticated} isAdmin={props.isAdmin} />
       <main className="Content">{props.children}</main>
     </Aux>
   );
 };
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    isAdmin: state.auth.roles === "ROLE_ADMIN"
   };
 };
-export default connect(mapStateToProps)(Layout);
+export default connect(mapStateToProps, null)(Layout);

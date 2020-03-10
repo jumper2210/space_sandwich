@@ -71,6 +71,49 @@ export const fetchOrdersStart = () => {
   };
 };
 
+export const fetchOrdersForAdmin = token => {
+  return dispatch => {
+    dispatch(fetchOrdersForAdminStart());
+    const config = {
+      headers: {
+        Authorization: "Bearer ".concat(token),
+        "Content-Type": "application/json"
+      }
+    };
+    axios
+      .get("/zamowieniaAdmin", config)
+      .then(res => {
+        const fetchedOrdersForAdmin = [];
+
+        for (let key in res.data) {
+          fetchedOrdersForAdmin.push({
+            ...res.data[key]
+          });
+        }
+        localStorage.setItem("decision", res.data.confirmedOrder);
+
+        dispatch(fetchOrdersForAdminSuccess(fetchedOrdersForAdmin));
+      })
+      .catch(err => {
+        dispatch(fetchOrdersForAdminFail(err));
+      });
+  };
+};
+
+export const fetchOrdersForAdminSuccess = ordersForAdmin => {
+  return {
+    type: actionTypes.FETCH_ORDERS_FOR_ADMIN_SUCCESS,
+    ordersForAdmin: ordersForAdmin
+  };
+};
+export const fetchOrdersForAdminStart = () => {
+  return {
+    type: actionTypes.FETCH_ORDERS_FOR_ADMIN_START
+  };
+};
+export const fetchOrdersForAdminFail = error => {
+  return { type: actionTypes.FETCH_ORDERS_FOR_ADMIN_FAIL, error: error };
+};
 export const fetchOrders = token => {
   return dispatch => {
     dispatch(fetchOrdersStart());

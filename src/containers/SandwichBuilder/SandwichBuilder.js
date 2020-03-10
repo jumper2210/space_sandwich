@@ -192,7 +192,7 @@ const mapDispatchToProps = dispatch => {
 
     onBreadTypeAdded: bdName => dispatch(actions.addBreadTypes(bdName)),
     onBreadTypeRemoved: bdName => dispatch(actions.removeBreadTypes(bdName)),
-    onFetchRole: token => dispatch(actions.fetchRole(token))
+    onFetchRole: roles => dispatch(actions.fetchRole(roles))
   };
 };
 export default connect(

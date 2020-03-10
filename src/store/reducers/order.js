@@ -4,7 +4,8 @@ import { updateObject } from "../utility";
 const initialState = {
   orders: [],
   loading: false,
-  purchased: false
+  purchased: false,
+  ordersForAdmin: []
 };
 
 const purchaseInit = (state, action) => {
@@ -43,6 +44,21 @@ const fetchOrdersFail = (state, action) => {
   return updateObject(state, { loading: false });
 };
 
+const fetchOrdersForAdminStart = (state, action) => {
+  return updateObject(state, { loading: false });
+};
+
+const fetchOrdersForAdminSuccess = (state, action) => {
+  return updateObject(state, {
+    ordersForAdmin: action.ordersForAdmin,
+    loading: false
+  });
+};
+
+const fetchOrdersForAdminFail = (state, action) => {
+  return updateObject(state, { loading: false });
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.PURCHASE_INIT:
@@ -59,6 +75,13 @@ const reducer = (state = initialState, action) => {
       return fetchOrdersSuccess(state, action);
     case actionTypes.FETCH_ORDERS_FAIL:
       return fetchOrdersFail(state, action);
+
+    case actionTypes.FETCH_ORDERS_FOR_ADMIN_FAIL:
+      return fetchOrdersForAdminFail(state, action);
+    case actionTypes.FETCH_ORDERS_FOR_ADMIN_SUCCESS:
+      return fetchOrdersForAdminSuccess(state, action);
+    case actionTypes.FETCH_ORDERS_FOR_ADMIN_START:
+      return fetchOrdersForAdminStart(state, action);
     default:
       return state;
   }

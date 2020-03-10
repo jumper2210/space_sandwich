@@ -1,28 +1,26 @@
 .view {
-  width: 90%;
-  border: 0.3rem solid rgb(0, 0, 0);
-  box-shadow: 0 2px 3px rgb(143, 143, 143);
-  padding: 5rem;
-  margin: 1.5rem auto;
-  box-sizing: border-box;
-  position: absolute;
-  top: 10%;
-  left: 5%;
-  height: 40%;
-  font-size: 3rem;
-  font-weight: 800;
 }
 
 .text {
   color: rgb(194, 133, 2);
+  top: 20%;
+  left: 40%;
+  position: absolute;
+  font-size: 4.5rem;
 }
 
-.btnAccept {
+.btnView {
   background-color: transparent;
   font-size: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 30%;
 }
 
-.btnDeclined {
+.btnOrders {
   background-color: transparent;
   font-size: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }

@@ -142,7 +142,7 @@ const ContactData = props => {
         />
       ))}
       <button className={classes.ContactBtn} disabled={!formIsValid}>
-        ZAMOW
+        Wyslij do potwierdzenia
       </button>
     </form>
   );

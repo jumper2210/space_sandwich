@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   loading: false,
   authRedirectPath: "/",
-  roles: null
+  roles: []
 };
 
 const authStart = (state, action) => {
@@ -19,8 +19,7 @@ const authSuccess = (state, action) => {
     token: action.idToken,
     userId: action.userId,
     error: null,
-    loading: false,
-    roles: action.roles
+    loading: false
   });
 };
 

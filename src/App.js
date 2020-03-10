@@ -14,7 +14,12 @@ const AdminView = React.lazy(() => {
 const Checkout = React.lazy(() => {
   return import("./containers/Checkout/Checkout");
 });
-
+const OrdersToConfirm = React.lazy(() => {
+  return import("./containers/AdminView/OrdersToConfirm/OrdersToConfirm");
+});
+const UsersView = React.lazy(() => {
+  return import("./containers/AdminView/ViewUsers/ViewUsers");
+});
 const Orders = React.lazy(() => {
   return import("./containers/Orders/Orders");
 });
@@ -38,6 +43,11 @@ const App = props => {
     routes = (
       <Switch>
         <Route path="/adminView" render={props => <AdminView {...props} />} />
+        <Route
+          path="/OrdersToConfirm"
+          render={props => <OrdersToConfirm {...props} />}
+        />
+        <Route path="/UsersView" render={props => <UsersView {...props} />} />
         <Route path="/checkout" render={props => <Checkout {...props} />} />
         <Route path="/orders" render={props => <Orders {...props} />} />
         <Route path="/logout" component={Logout} />

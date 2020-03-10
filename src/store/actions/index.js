@@ -6,11 +6,17 @@ export {
   addBreadTypes,
   removeBreadTypes
 } from "./sandwichBuilder";
-export { purchaseSandwich, purchaseInit, fetchOrders } from "./order";
+export {
+  purchaseSandwich,
+  purchaseInit,
+  fetchOrders,
+  fetchOrdersForAdmin
+} from "./order";
 export {
   auth,
   logout,
   setAuthRedirectPath,
   authCheckState,
+  fetchRoleSuccess,
   fetchRole
 } from "./auth";
