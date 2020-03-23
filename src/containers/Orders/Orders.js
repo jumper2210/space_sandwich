@@ -5,7 +5,7 @@ import axios from "axios";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import * as actions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import Aux from "../../hoc/Auxiliary/Auxiliary";
+
 const Orders = props => {
   const { onFetchOrders } = props;
 
@@ -16,14 +16,13 @@ const Orders = props => {
   let orders = <Spinner />;
   if (!props.loading && props.orders) {
     orders = props.orders.map(order => (
-      <Aux>
-        <Order
-          key={order.id}
-          ingredients={order.ingredients}
-          sauces={order.sauces}
-          breadTypes={order.breadTypes}
-        />
-      </Aux>
+      <Order
+        key={order.id}
+        ingredients={order.ingredients}
+        sauces={order.sauces}
+        breadTypes={order.breadTypes}
+        id={order.id}
+      />
     ));
   }
   return <div>{orders}</div>;

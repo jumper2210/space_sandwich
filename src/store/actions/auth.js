@@ -72,10 +72,7 @@ export const fetchRole = token => {
     let url = "http://127.0.0.1:8080/getUserData";
     if (token) {
       axios.get(url, config).then(res => {
-        // const fetchedRole = res.data;
-        //console.log(fetchedRole);
         localStorage.setItem("roles", res.data);
-        dispatch(fetchRoleSuccess(res.data));
       });
     }
   };

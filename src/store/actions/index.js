@@ -10,7 +10,8 @@ export {
   purchaseSandwich,
   purchaseInit,
   fetchOrders,
-  fetchOrdersForAdmin
+  fetchOrdersForAdmin,
+  confirmOrder
 } from "./order";
 export {
   auth,

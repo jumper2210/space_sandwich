@@ -152,7 +152,6 @@ const reducer = (state = initialState, action) => {
       return addSauce(state, action);
     case actionTypes.REMOVE_SAUCE:
       return removeSauce(state, action);
-
     case actionTypes.FETCH_SAUCES_FAILED:
       return fetchSaucesFailed(state, action);
     case actionTypes.ADD_INGREDIENT:

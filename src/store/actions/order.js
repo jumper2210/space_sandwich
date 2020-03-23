@@ -22,12 +22,60 @@ export const purchaseSandwichStart = () => {
   };
 };
 
+export const confirmOrderFail = error => {
+  return {
+    type: actionTypes.CONFIRM_ORDER_FAIL,
+    error: error
+  };
+};
+
+export const confirmOrderStart = () => {
+  return {
+    type: actionTypes.CONFIRM_ORDER_START
+  };
+};
+
+export const confirmOrderSuccess = (id, orderData) => {
+  console.log(orderData);
+  return {
+    type: actionTypes.CONFIRM_ORDER_SUCCESS,
+    orderId: id,
+    orderData: orderData
+  };
+};
+
+export const confirmOrder = (orderData, token) => {
+  return dispatch => {
+    dispatch(confirmOrderStart());
+    const orderDataArray = {
+      ...orderData
+    };
+
+    const config = {
+      headers: {
+        Authorization: "Bearer ".concat(token),
+        "Content-Type": "application/json"
+      }
+    };
+
+    axios
+      .post("/zamowieniaAdmin", orderDataArray, config)
+      .then(response => {
+        dispatch(confirmOrderSuccess(response.data.id, orderDataArray));
+      })
+      .catch(error => {
+        dispatch(confirmOrderFail(error));
+      });
+  };
+};
+
 export const purchaseSandwich = (orderData, token) => {
   return dispatch => {
     dispatch(purchaseSandwichStart());
     const orderDataArray = {
       ...orderData
     };
+
     const config = {
       headers: {
         Authorization: "Bearer ".concat(token),
@@ -84,7 +132,6 @@ export const fetchOrdersForAdmin = token => {
       .get("/zamowieniaAdmin", config)
       .then(res => {
         const fetchedOrdersForAdmin = [];
-
         for (let key in res.data) {
           fetchedOrdersForAdmin.push({
             ...res.data[key]
@@ -100,10 +147,10 @@ export const fetchOrdersForAdmin = token => {
   };
 };
 
-export const fetchOrdersForAdminSuccess = ordersForAdmin => {
+export const fetchOrdersForAdminSuccess = fetchedOrdersForAdmin => {
   return {
     type: actionTypes.FETCH_ORDERS_FOR_ADMIN_SUCCESS,
-    ordersForAdmin: ordersForAdmin
+    ordersForAdmin: fetchedOrdersForAdmin
   };
 };
 export const fetchOrdersForAdminStart = () => {

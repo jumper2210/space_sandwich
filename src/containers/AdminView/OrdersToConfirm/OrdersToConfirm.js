@@ -3,20 +3,21 @@ import axios from "axios";
 import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
 import * as actions from "../../../store/actions/index";
 import Spinner from "../../../components/UI/Spinner/Spinner";
-import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import OrderToConfirm from "./OrderToConfirm/OrderToConfirm";
 import { connect } from "react-redux";
+
 const OrdersToConfirm = props => {
   const { onFetchOrdersToConfirm } = props;
 
   useEffect(() => {
     props.onFetchOrdersToConfirm(props.token);
   }, [onFetchOrdersToConfirm]);
+
   let orders = <Spinner />;
   if (!props.loading && props.ordersForAdmin) {
     orders = props.ordersForAdmin.map(order => (
       <OrderToConfirm
-        key={order.id}
+        orderKey={order.id}
         ingredients={order.ingredients}
         sauces={order.sauces}
         breadTypes={order.breadTypes}

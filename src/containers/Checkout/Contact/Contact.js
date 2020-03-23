@@ -70,7 +70,7 @@ const ContactData = props => {
       elementType: "select",
       elementConfig: {
         options: [
-          { value: "fastest", displayValue: "Space speed" },
+          { value: "fastest", displayValue: "SpaceSpeed" },
           { value: "cheapest", displayValue: "Cheap" }
         ]
       },
@@ -88,6 +88,7 @@ const ContactData = props => {
     for (let formElementIdentifier in orderForm) {
       formData[formElementIdentifier] = orderForm[formElementIdentifier].value;
     }
+
     const order = {
       ingredients: props.ingredients,
       breadTypes: props.breadTypes,
@@ -95,6 +96,7 @@ const ContactData = props => {
       userId: props.userId,
       orderData: formData
     };
+
     props.onOrderSandwich(order, props.token);
   };
 

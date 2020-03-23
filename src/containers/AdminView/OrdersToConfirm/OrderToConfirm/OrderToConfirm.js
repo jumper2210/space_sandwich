@@ -1,23 +1,21 @@
 import React from "react";
 import classes from "./OrderToConfirm.module.css";
-
+import axios from "axios";
+import withErrorHandler from "../../../../hoc/withErrorHandler/withErrorHandler";
+import * as actions from "../../../../store/actions/index";
+import { connect } from "react-redux";
 const OrderToConfirm = props => {
   const ingredients = [];
   const sauces = [];
   const breadTypes = [];
-  const decision = [props.decision];
+
+  localStorage.setItem("dec", props.decision);
+  const decision = localStorage.getItem("dec");
 
   for (let ingredientName in props.ingredients) {
     ingredients.push({
       name: ingredientName,
       amount: props.ingredients[ingredientName]
-    });
-  }
-
-  for (let decisionName in props.decision) {
-    decision.push({
-      name: decisionName,
-      amount: props.decision[decisionName]
     });
   }
 
@@ -40,9 +38,11 @@ const OrderToConfirm = props => {
         style={{
           textTransform: "capitalize",
           display: "inline-block",
-          margin: "0 8px",
+          margin: "0 6px",
           border: "1px solid #ccc",
-          padding: "5px"
+          padding: "4px",
+          fontSize: "1.3rem",
+          color: "rgb(241, 139, 4)"
         }}
         key={ig.name}
       >
@@ -56,9 +56,11 @@ const OrderToConfirm = props => {
         style={{
           textTransform: "capitalize",
           display: "inline-block",
-          margin: "0 8px",
+          margin: "0 6px",
           border: "1px solid #ccc",
-          padding: "5px"
+          padding: "4px",
+          fontSize: "1.3rem",
+          color: "rgb(241, 139, 4)"
         }}
         key={su.name}
       >
@@ -66,15 +68,18 @@ const OrderToConfirm = props => {
       </span>
     );
   });
+
   const breadTypeOutput = breadTypes.map(bd => {
     return (
       <span
         style={{
           textTransform: "capitalize",
           display: "inline-block",
-          margin: "0 8px",
+          margin: "0 6px",
           border: "1px solid #ccc",
-          padding: "5px"
+          padding: "4px",
+          fontSize: "1.3rem",
+          color: "rgb(241, 139, 4)"
         }}
         key={bd.name}
       >
@@ -82,24 +87,6 @@ const OrderToConfirm = props => {
       </span>
     );
   });
-  /* const decisionOutput = decision.map(bd => {
-    return (
-      <span
-        style={{
-          textTransform: "capitalize",
-          display: "inline-block",
-          margin: "0 8px",
-          border: "1px solid #ccc",
-          padding: "5px"
-        }}
-        key={bd.name}
-      >
-        {bd.name} ({bd.amount})
-      </span>
-    );
-  }); */
-
-  console.log(decision);
 
   return (
     <div className={classes.OrderToConfirm}>
@@ -115,15 +102,47 @@ const OrderToConfirm = props => {
             margin: "0 8px",
             border: "1px solid #ccc",
             padding: "5px",
-            fontSize: "10rem"
+            fontSize: "2rem",
+            color: "rgb(241, 139, 4)"
           }}
         >
           {decision}
         </p>
       </p>
-      <button className={classes.btnConfirm}>Potwierdź</button>
+      <button
+        className={classes.btnConfirm}
+        onClick={() => {
+          const order = {
+            ingredients: props.ingredients,
+            userId: props.userId,
+            id: props.orderKey
+          };
+          props.onAdminOrder(order, props.token);
+        }}
+      >
+        Potwierdź
+      </button>
     </div>
   );
 };
 
-export default OrderToConfirm;
+const mapStateToProps = state => {
+  return {
+    orderConfirmed: state.order.ordersForAdmin,
+    loading: state.order.loading,
+    token: state.auth.token,
+    userId: state.auth.userId
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAdminOrder: (orderData, token) =>
+      dispatch(actions.confirmOrder(orderData, token))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(OrderToConfirm, axios));
