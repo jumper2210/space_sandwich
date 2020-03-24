@@ -21,3 +21,4 @@ export {
   fetchRoleSuccess,
   fetchRole
 } from "./auth";
+export { fetchAllUsersSuccess, fetchUsers, deleteUser } from "./users";

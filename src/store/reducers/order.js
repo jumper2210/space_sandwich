@@ -22,7 +22,6 @@ const confirmOrderStart = (state, action) => {
 
 const confirmOrderSuccess = (state, action) => {
   const adminOrder = updateObject(action.orderData);
-  //console.log(adminOrder);
   return updateObject(state, {
     loading: false,
     purchased: true,
@@ -36,7 +35,6 @@ const purchaseSandwichStart = (state, action) => {
 
 const purchaseSandwichSuccess = (state, action) => {
   const newOrder = updateObject(action.orderData, { id: action.orderId });
-  console.log(newOrder + "tutaj");
   return updateObject(state, {
     loading: false,
     purchased: true,

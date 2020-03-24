@@ -9,6 +9,7 @@ import orderReducer from "./store/reducers/order";
 import sandwichBuilderReducer from "./store/reducers/sandwichBuilder";
 import thunk from "redux-thunk";
 import authReducer from "./store/reducers/auth";
+import usersReducer from "./store/reducers/users";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 
 const composeEnhancers =
@@ -19,7 +20,8 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   sandwichBuilder: sandwichBuilderReducer,
   order: orderReducer,
-  auth: authReducer
+  auth: authReducer,
+  users: usersReducer
 });
 const store = createStore(
   rootReducer,

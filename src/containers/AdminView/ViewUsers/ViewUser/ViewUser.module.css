@@ -1,0 +1,21 @@
+.btnDelete {
+  outline: none;
+  background-color: rgb(241, 139, 4);
+  font-size: 1.4rem;
+  position: absolute;
+  left: 80%;
+  top: 50%;
+}
+
+.user {
+  width: 30%;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  padding-left: 3rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-size: 4rem;
+  position: relative;
+  top: 10rem;
+  left: 0;
+}

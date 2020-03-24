@@ -86,9 +86,9 @@ export const auth = (username, password, isSignup) => {
       username: username,
       password: password
     };
-    let url = "http://127.0.0.1:8080/rejestracja";
+    let url = "http://127.0.0.1:8080/registration";
     if (!isSignup) {
-      url = "http://127.0.0.1:8080/uwierzytelnienie";
+      url = "http://127.0.0.1:8080/authentication";
     }
     axios
       .post(url, authData)

@@ -36,7 +36,6 @@ export const confirmOrderStart = () => {
 };
 
 export const confirmOrderSuccess = (id, orderData) => {
-  console.log(orderData);
   return {
     type: actionTypes.CONFIRM_ORDER_SUCCESS,
     orderId: id,
@@ -59,7 +58,7 @@ export const confirmOrder = (orderData, token) => {
     };
 
     axios
-      .post("/zamowieniaAdmin", orderDataArray, config)
+      .post("/ordersForAdmin", orderDataArray, config)
       .then(response => {
         dispatch(confirmOrderSuccess(response.data.id, orderDataArray));
       })
@@ -75,7 +74,6 @@ export const purchaseSandwich = (orderData, token) => {
     const orderDataArray = {
       ...orderData
     };
-
     const config = {
       headers: {
         Authorization: "Bearer ".concat(token),
@@ -83,7 +81,7 @@ export const purchaseSandwich = (orderData, token) => {
       }
     };
     axios
-      .post("/zamowienia", orderDataArray, config)
+      .post("/orders", orderDataArray, config)
       .then(response => {
         dispatch(purchaseSandwichSuccess(response.data.id, orderDataArray));
       })
@@ -129,7 +127,7 @@ export const fetchOrdersForAdmin = token => {
       }
     };
     axios
-      .get("/zamowieniaAdmin", config)
+      .get("/ordersForAdmin", config)
       .then(res => {
         const fetchedOrdersForAdmin = [];
         for (let key in res.data) {
@@ -161,6 +159,7 @@ export const fetchOrdersForAdminStart = () => {
 export const fetchOrdersForAdminFail = error => {
   return { type: actionTypes.FETCH_ORDERS_FOR_ADMIN_FAIL, error: error };
 };
+
 export const fetchOrders = token => {
   return dispatch => {
     dispatch(fetchOrdersStart());
@@ -171,7 +170,7 @@ export const fetchOrders = token => {
       }
     };
     axios
-      .get("/zamowienia", config)
+      .get("/orders", config)
       .then(res => {
         const fetchedOrders = [];
         for (let key in res.data) {

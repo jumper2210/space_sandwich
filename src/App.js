@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import Logout from "./containers/Authentication/Logout/Logout";
 import * as actions from "./store/actions/index";
+import ViewUsers from "./containers/AdminView/ViewUsers/ViewUsers";
 
 const AdminView = React.lazy(() => {
   return import("./containers/AdminView/AdminView");
@@ -47,6 +48,7 @@ const App = props => {
           path="/OrdersToConfirm"
           render={props => <OrdersToConfirm {...props} />}
         />
+        <Route path="/ViewUsers" render={props => <ViewUsers {...props} />} />
         <Route path="/UsersView" render={props => <UsersView {...props} />} />
         <Route path="/checkout" render={props => <Checkout {...props} />} />
         <Route path="/orders" render={props => <Orders {...props} />} />

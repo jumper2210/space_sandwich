@@ -7,11 +7,11 @@ import OrderToConfirm from "./OrderToConfirm/OrderToConfirm";
 import { connect } from "react-redux";
 
 const OrdersToConfirm = props => {
-  const { onFetchOrdersToConfirm } = props;
+  const { onFetchOrders } = props;
 
   useEffect(() => {
-    props.onFetchOrdersToConfirm(props.token);
-  }, [onFetchOrdersToConfirm]);
+    props.onFetchOrders(props.token);
+  }, [onFetchOrders]);
 
   let orders = <Spinner />;
   if (!props.loading && props.ordersForAdmin) {
@@ -39,8 +39,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchOrdersToConfirm: token =>
-      dispatch(actions.fetchOrdersForAdmin(token))
+    onFetchOrders: token => dispatch(actions.fetchOrdersForAdmin(token))
   };
 };
 export default connect(
