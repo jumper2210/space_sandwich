@@ -8,7 +8,7 @@ This application gives possibility to bulid and order a tasty sandwich. In the n
 - Css (Sass soon)
 - & other ...
 ## 
-Server side -> https://github.com/jumper2210/SpaceSandwich_ServerSide
+Backend side -> https://github.com/jumper2210/SpaceSandwich_ServerSide
 #
 Author: Krzysztof Skoczek
 
