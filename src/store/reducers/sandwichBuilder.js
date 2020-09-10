@@ -5,78 +5,64 @@ const initialState = {
   breadTypes: {
     wholeGrains: 0,
     wheat: 0,
-    noGluten: 0
+    noGluten: 0,
   },
   ingredients: {
     meat: 0,
     cheese: 0,
     salad: 0,
-    bacon: 0
+    bacon: 0,
   },
   sauces: {
     space: 0,
     barbecue: 0,
-    ketchup: 0
+    ketchup: 0,
   },
   totalPrice: 0,
   error: false,
-  building: false
+  building: false,
 };
 
 const INGREDIENT_PRICES = {
   meat: 3,
   cheese: 5,
   salad: 6,
-  bacon: 7
+  bacon: 7,
 };
 const SAUCES_PRICES = {
   space: 1,
   barbecue: 2,
-  ketchup: 1
+  ketchup: 1,
 };
 const BREAD_TYPES_PRICES = {
   wholeGrains: 2,
   wheat: 3,
-  noGluten: 4
+  noGluten: 4,
 };
 const addIngredient = (state, action) => {
   const updatedIngredient = {
-    [action.ingredientName]: state.ingredients[action.ingredientName] + 1
+    [action.ingredientName]: state.ingredients[action.ingredientName] + 1,
   };
   const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
   const updatedState = {
     ingredients: updatedIngredients,
     totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
-    building: true
+    building: true,
   };
   return updateObject(state, updatedState);
 };
 
 const removeIngredient = (state, action) => {
   const updatedIng = {
-    [action.ingredientName]: state.ingredients[action.ingredientName] - 1
+    [action.ingredientName]: state.ingredients[action.ingredientName] - 1,
   };
   const updatedIngs = updateObject(state.ingredients, updatedIng);
   const updatedSt = {
     ingredients: updatedIngs,
     totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
-    building: true
+    building: true,
   };
   return updateObject(state, updatedSt);
-};
-
-const setIngredients = (state, action) => {
-  return updateObject(state, {
-    ingredients: {
-      salad: action.ingredients.salad,
-      bacon: action.ingredients.bacon,
-      cheese: action.ingredients.cheese,
-      meat: action.ingredients.meat
-    },
-    totalPrice: 4,
-    error: false,
-    building: false
-  });
 };
 
 const fetchIngredientsFailed = (state, action) => {
@@ -85,26 +71,26 @@ const fetchIngredientsFailed = (state, action) => {
 
 const addSauce = (state, action) => {
   const updatedSauce = {
-    [action.sauceName]: state.sauces[action.sauceName] + 1
+    [action.sauceName]: state.sauces[action.sauceName] + 1,
   };
   const updatedSauces = updateObject(state.sauces, updatedSauce);
   const updatedState = {
     sauces: updatedSauces,
     totalPrice: state.totalPrice + SAUCES_PRICES[action.sauceName],
-    building: true
+    building: true,
   };
   return updateObject(state, updatedState);
 };
 
 const removeSauce = (state, action) => {
   const updatedSauce = {
-    [action.sauceName]: state.sauces[action.sauceName] - 1
+    [action.sauceName]: state.sauces[action.sauceName] - 1,
   };
   const updatedSauces = updateObject(state.sauces, updatedSauce);
   const updatedSt = {
     sauces: updatedSauces,
     totalPrice: state.totalPrice - SAUCES_PRICES[action.sauceName],
-    building: true
+    building: true,
   };
 
   return updateObject(state, updatedSt);
@@ -116,13 +102,13 @@ const fetchSaucesFailed = (state, action) => {
 
 const addBreadTypes = (state, action) => {
   const updatedBreadType = {
-    [action.breadTypesName]: state.breadTypes[action.breadTypesName] + 1
+    [action.breadTypesName]: state.breadTypes[action.breadTypesName] + 1,
   };
   const updatedBreadTypes = updateObject(state.breadTypes, updatedBreadType);
   const updatedSt = {
     breadTypes: updatedBreadTypes,
     totalPrice: state.totalPrice + BREAD_TYPES_PRICES[action.breadTypesName],
-    building: true
+    building: true,
   };
 
   return updateObject(state, updatedSt);
@@ -130,13 +116,13 @@ const addBreadTypes = (state, action) => {
 
 const removeBreadTypes = (state, action) => {
   const updatedBreadType = {
-    [action.breadTypesName]: state.breadTypes[action.breadTypesName] - 1
+    [action.breadTypesName]: state.breadTypes[action.breadTypesName] - 1,
   };
   const updatedBreadTypes = updateObject(state.breadTypes, updatedBreadType);
   const updatedSt = {
     breadTypes: updatedBreadTypes,
     totalPrice: state.totalPrice - BREAD_TYPES_PRICES[action.breadTypesName],
-    building: true
+    building: true,
   };
 
   return updateObject(state, updatedSt);
@@ -144,6 +130,20 @@ const removeBreadTypes = (state, action) => {
 
 const fetchBreadTypesFailed = (state, action) => {
   return updateObject(state, { error: true });
+};
+
+const setIngredients = (state, action) => {
+  return updateObject(state, {
+    ingredients: {
+      salad: action.ingredients.salad,
+      bacon: action.ingredients.bacon,
+      cheese: action.ingredients.cheese,
+      meat: action.ingredients.meat,
+    },
+    totalPrice: 4,
+    error: false,
+    building: false,
+  });
 };
 
 const reducer = (state = initialState, action) => {

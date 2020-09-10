@@ -4,6 +4,7 @@ import axios from "axios";
 import withErrorHandler from "../../../../hoc/withErrorHandler/withErrorHandler";
 import * as actions from "../../../../store/actions/index";
 import { connect } from "react-redux";
+
 const OrderToConfirm = props => {
   const ingredients = [];
   const sauces = [];

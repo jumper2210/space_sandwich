@@ -1,19 +1,23 @@
 .Sandwich {
   width: 100%;
-  margin: auto;
   height: 250px;
   text-align: center;
-  font-weight: bold;
-  font-size: 1.2rem;
   position: absolute;
   top: 33%;
   left: 22%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  overflow-y: scroll;
 }
 
+.Sandwich::-webkit-scrollbar {
+  display: none;
+}
 .Information {
   text-transform: uppercase;
   color: rgb(209, 200, 196);
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: 200;
 }
 

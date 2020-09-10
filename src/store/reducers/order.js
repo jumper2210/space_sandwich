@@ -5,7 +5,7 @@ const initialState = {
   orders: [],
   loading: false,
   purchased: false,
-  ordersForAdmin: []
+  ordersForAdmin: [],
 };
 
 const purchaseInit = (state, action) => {
@@ -25,7 +25,7 @@ const confirmOrderSuccess = (state, action) => {
   return updateObject(state, {
     loading: false,
     purchased: true,
-    orders: state.orders.concat(adminOrder)
+    orders: state.orders.concat(adminOrder),
   });
 };
 
@@ -38,7 +38,7 @@ const purchaseSandwichSuccess = (state, action) => {
   return updateObject(state, {
     loading: false,
     purchased: true,
-    orders: state.orders.concat(newOrder)
+    orders: state.orders.concat(newOrder),
   });
 };
 
@@ -53,7 +53,7 @@ const fetchOrdersStart = (state, action) => {
 const fetchOrdersSuccess = (state, action) => {
   return updateObject(state, {
     orders: action.orders,
-    loading: false
+    loading: false,
   });
 };
 
@@ -68,7 +68,7 @@ const fetchOrdersForAdminStart = (state, action) => {
 const fetchOrdersForAdminSuccess = (state, action) => {
   return updateObject(state, {
     ordersForAdmin: action.ordersForAdmin,
-    loading: false
+    loading: false,
   });
 };
 

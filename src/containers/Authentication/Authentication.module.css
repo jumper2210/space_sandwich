@@ -1,18 +1,18 @@
 .Auth {
-  position: absolute;
-  top: 10rem;
-  left: 20rem;
-  margin: 10rem auto;
-  width: 100%;
+  width: 50%;
   text-align: center;
   box-shadow: 0 0.2rem 0.3rem #ccc;
   border: 0.1rem solid #eee;
   padding: 3rem;
   box-sizing: border-box;
   height: 35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
-@media (min-width: 60rem) {
+@media (max-width: 60rem) {
   .Auth {
     width: 50rem;
   }
@@ -24,31 +24,33 @@
   color: white;
   outline: none;
   cursor: pointer;
-  font: inherit;
-  padding: 10px;
-  margin: 10px;
   font-weight: bold;
-  font-size: 1.4rem;
-  position: absolute;
-  top: 18rem;
-  left: 17rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin-top: 2rem;
 }
 
 .textAuth {
-  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
   background-color: transparent;
   color: rgb(255, 143, 15);
-  position: absolute;
-  top: 25rem;
-  left: 8rem;
   outline: none;
   border: none;
   cursor: pointer;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
 }
 
 .titleAuth {
   font-size: 1.6rem;
   width: 100%;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  text-transform: uppercase;
 }

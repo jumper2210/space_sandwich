@@ -1,14 +1,14 @@
 import React from "react";
 import classes from "./BuildBreadControl.module.css";
 
-const BuildControl = props => {
+const BuildControl = (props) => {
   return (
     <div className={classes.BuildControl}>
       <p className={classes.Label}>{props.label}</p>
       <button
         className={classes.Pick}
         onClick={props.clicked}
-        disabled={props.tooMuchBdHandler}
+        disabled={props.disabledAdding}
       >
         Wybierz
       </button>

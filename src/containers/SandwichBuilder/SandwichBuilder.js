@@ -11,19 +11,18 @@ import axios from "axios";
 import * as actions from "../../store/actions/index";
 import { connect } from "react-redux";
 
-const SandwichBuilder = props => {
+const SandwichBuilder = (props) => {
   const [purchasing, setPurchasing] = useState(false);
   const [buildingStep, setBuildingStep] = useState(0);
-  const [moveOn, setMoveOn] = useState(false);
 
   const { onFetchRole } = props;
   useEffect(() => {
     props.onFetchRole(props.token);
   }, [onFetchRole]);
 
-  const updateMoveOnState = breadTypes => {
+  const updateMoveOnState = (breadTypes) => {
     let sum = Object.keys(breadTypes)
-      .map(btKey => {
+      .map((btKey) => {
         return breadTypes[btKey];
       })
       .reduce((sum, el) => {
@@ -31,26 +30,15 @@ const SandwichBuilder = props => {
       }, 0);
     return sum > 0;
   };
-  const updateMoveOnStateIg = ingredients => {
+  const updateMoveOnStateIg = (ingredients) => {
     let sum = Object.keys(ingredients)
-      .map(btKey => {
+      .map((btKey) => {
         return ingredients[btKey];
       })
       .reduce((sum, el) => {
         return sum + el;
       }, 0);
     return sum > 0;
-  };
-
-  const updateMoveOnStateSu = sauces => {
-    let sum = Object.keys(sauces)
-      .map(suKey => {
-        return sauces[suKey];
-      })
-      .reduce((sum, el) => {
-        return sum + el;
-      }, 0);
-    setMoveOn(sum > 0);
   };
 
   const nextStepHandler = () => {
@@ -71,22 +59,15 @@ const SandwichBuilder = props => {
   };
 
   const notEnoughBd = {
-    ...props.breadTypes
-  };
-  const tooMuchBd = {
-    ...props.breadTypes
+    ...props.breadTypes,
   };
 
   for (let key in notEnoughBd) {
     notEnoughBd[key] = notEnoughBd[key] <= 0;
   }
 
-  for (let key in tooMuchBd) {
-    tooMuchBd[key] = tooMuchBd[key] >= 1;
-  }
-
   const notEnoughIg = {
-    ...props.ingredients
+    ...props.ingredients,
   };
 
   for (let key in notEnoughIg) {
@@ -94,7 +75,7 @@ const SandwichBuilder = props => {
   }
 
   const notEnoughSu = {
-    ...props.sauces
+    ...props.sauces,
   };
 
   for (let key in notEnoughSu) {
@@ -107,12 +88,10 @@ const SandwichBuilder = props => {
         <BuildBreadControls
           BreadTypeAdded={props.onBreadTypeAdded}
           BreadTypeRemove={props.onBreadTypeRemoved}
-          moveOn={moveOn}
           price={props.price}
           keepAdding={nextStepHandler}
           purchasable={updateMoveOnState(props.breadTypes)}
           disabledRemove={notEnoughBd}
-          tooMuchBdHandler={tooMuchBd}
         />
       );
       break;
@@ -168,31 +147,33 @@ const SandwichBuilder = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     ingredients: state.sandwichBuilder.ingredients,
     breadTypes: state.sandwichBuilder.breadTypes,
     sauces: state.sandwichBuilder.sauces,
     price: state.sandwichBuilder.totalPrice,
     error: state.sandwichBuilder.error,
-    token: state.auth.token
+    token: state.auth.token,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onIngredientAdded: ingName => dispatch(actions.addIngredient(ingName)),
-    onIngredientRemoved: ingName => dispatch(actions.removeIngredient(ingName)),
+    onIngredientAdded: (ingName) => dispatch(actions.addIngredient(ingName)),
+    onIngredientRemoved: (ingName) =>
+      dispatch(actions.removeIngredient(ingName)),
 
     onInitPurchase: () => dispatch(actions.purchaseInit()),
-    onSetAuthRedirectPath: path => dispatch(actions.setAuthRedirectPath(path)),
+    onSetAuthRedirectPath: (path) =>
+      dispatch(actions.setAuthRedirectPath(path)),
 
-    onSauceAdded: suName => dispatch(actions.addSauce(suName)),
-    onSauceRemoved: suName => dispatch(actions.removeSauce(suName)),
+    onSauceAdded: (suName) => dispatch(actions.addSauce(suName)),
+    onSauceRemoved: (suName) => dispatch(actions.removeSauce(suName)),
 
-    onBreadTypeAdded: bdName => dispatch(actions.addBreadTypes(bdName)),
-    onBreadTypeRemoved: bdName => dispatch(actions.removeBreadTypes(bdName)),
-    onFetchRole: roles => dispatch(actions.fetchRole(roles))
+    onBreadTypeAdded: (bdName) => dispatch(actions.addBreadTypes(bdName)),
+    onBreadTypeRemoved: (bdName) => dispatch(actions.removeBreadTypes(bdName)),
+    onFetchRole: (roles) => dispatch(actions.fetchRole(roles)),
   };
 };
 export default connect(
