@@ -15,10 +15,10 @@ const SandwichBuilder = (props) => {
   const [purchasing, setPurchasing] = useState(false);
   const [buildingStep, setBuildingStep] = useState(0);
 
-  const { onFetchRole } = props;
+  const { onFetchRole, token } = props;
   useEffect(() => {
-    props.onFetchRole(props.token);
-  }, [onFetchRole]);
+    onFetchRole(token);
+  }, [onFetchRole, token]);
 
   const updateMoveOnState = (breadTypes) => {
     let sum = Object.keys(breadTypes)
