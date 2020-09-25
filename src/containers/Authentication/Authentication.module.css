@@ -1,4 +1,8 @@
 .Auth {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 50%;
   text-align: center;
   box-shadow: 0 0.2rem 0.3rem #ccc;
@@ -10,12 +14,6 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-}
-
-@media (max-width: 60rem) {
-  .Auth {
-    width: 50rem;
-  }
 }
 
 .btnAuth {
@@ -53,4 +51,25 @@
   align-items: center;
   text-align: center;
   text-transform: uppercase;
+}
+
+@media (max-width: 60rem) {
+  .Auth {
+    width: 50rem;
+  }
+}
+
+@media (max-width: 590px) {
+  .Auth {
+    width: 30rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .Auth {
+    width: 20rem;
+  }
+  .btnAuth {
+    font-size: 1rem;
+  }
 }

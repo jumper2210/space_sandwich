@@ -1,21 +1,21 @@
 .BuildControl {
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  margin: 0.5rem 0;
+  padding: 7rem;
 }
 
 .BuildControl button {
-  margin: 0 0.4rem;
   padding: 0.4rem;
   cursor: pointer;
-  width: 6rem;
+  width: 10rem;
   outline: none;
-  font-size: 0.8rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
   border: 0.1rem solid rgb(22, 10, 4);
-  border-radius: 10%;
+  border-radius: 0.4rem 0.4rem 0.4rem 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .BuildControl button:disabled {
@@ -59,4 +59,30 @@
   margin-right: 0.3rem;
   margin-left: 1rem;
   color: #aa6817;
+}
+
+@media (max-width: 730px) {
+  .BuildControl {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .BuildControl button {
+    width: 6rem;
+    font-size: 1.1rem;
+  }
+  .Label {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .BuildControl button {
+    width: 5rem;
+    font-size: 0.8rem;
+  }
+  .Label {
+    font-size: 0.8rem;
+  }
 }

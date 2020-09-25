@@ -2,8 +2,9 @@
   font-size: 4rem;
   text-align: center;
   display: inline-block;
-  color: black;
+  color: white;
   width: 100%;
+  text-transform: uppercase;
 }
 
 .span {
@@ -17,16 +18,15 @@
 }
 
 .list {
-  font-size: 2rem;
+  font-size: 4rem;
   display: inline-block;
   color: #aa6817;
-  padding-left: 7rem;
 }
 
 .ContinuePurchasing {
-  color: rgb(14, 7, 0);
+  color: white;
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 300;
   text-transform: uppercase;
   text-align: center;
   display: inline-block;
@@ -34,9 +34,6 @@
 }
 
 .next {
-  position: absolute;
-  top: 38rem;
-  left: 12rem;
   background-color: transparent;
   background-color: rgb(172, 83, 0);
   outline: none;
@@ -51,9 +48,6 @@
 }
 
 .previous {
-  position: absolute;
-  top: 38rem;
-  left: 27rem;
   background-color: transparent;
   background-color: rgb(14, 0, 0);
   outline: none;
@@ -67,10 +61,45 @@
   border-radius: 2rem;
 }
 
+.ListContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .Price {
   width: 100%;
   display: inline-block;
   font-size: 2.2rem;
   text-align: center;
-  padding-bottom: 9rem;
+  padding-bottom: 3rem;
+}
+
+.BtnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 780px) {
+  .list {
+    font-size: 2rem;
+  }
+  .title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .list {
+    font-size: 1.4rem;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .ContinuePurchasing {
+    font-size: 1.2rem;
+  }
 }

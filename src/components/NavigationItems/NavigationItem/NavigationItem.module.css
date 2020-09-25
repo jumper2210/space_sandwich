@@ -1,9 +1,8 @@
 .NavigationItem {
-  margin: 10px 1rem;
   box-sizing: border-box;
   display: block;
   width: 100%;
-  font-size: 1.7rem;
+  font-size: 2rem;
   font-weight: 500;
 }
 

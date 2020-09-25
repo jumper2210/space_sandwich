@@ -8,81 +8,81 @@ import * as actions from "../../../store/actions/index";
 import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
 import { updateObject, checkValidity } from "../../../store/utility";
 
-const ContactData = props => {
+const ContactData = (props) => {
   const [orderForm, setOrderForm] = useState({
     name: {
       elementType: "input",
       elementConfig: {
         type: "text",
-        placeholder: "Name"
+        placeholder: "Imie i nazwisko",
       },
       value: "",
       validation: {
-        required: true
+        required: true,
       },
       valid: false,
-      touched: false
+      touched: false,
     },
     street: {
       elementType: "input",
       elementConfig: {
         type: "text",
-        placeholder: "Street"
+        placeholder: "Ulica",
       },
       value: "",
       validation: {
-        required: true
+        required: true,
       },
       valid: false,
-      touched: false
+      touched: false,
     },
     zipCode: {
       elementType: "input",
       elementConfig: {
         type: "text",
-        placeholder: "ZIP_Code"
+        placeholder: "ZIP_Code",
       },
       value: "",
       validation: {
         required: true,
         minLength: 5,
         maxLength: 5,
-        isNumeric: true
+        isNumeric: true,
       },
       valid: false,
-      touched: false
+      touched: false,
     },
     city: {
       elementType: "input",
       elementConfig: {
         type: "text",
-        placeholder: "City"
+        placeholder: "Miasto",
       },
       value: "",
       validation: {
-        required: true
+        required: true,
       },
       valid: false,
-      touched: false
+      touched: false,
     },
 
     deliveryMethod: {
       elementType: "select",
       elementConfig: {
         options: [
-          { value: "fastest", displayValue: "SpaceSpeed" },
-          { value: "cheapest", displayValue: "Cheap" }
-        ]
+          { value: "fastest", displayValue: "Dostawa: Kosmicznie szybka" },
+          { value: "cheapest", displayValue: "Dostawa: Tania" },
+        ],
       },
       value: "",
       validation: {},
-      valid: true
-    }
+      valid: true,
+    },
   });
 
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const orderHandler = event => {
+  const orderHandler = (event) => {
     event.preventDefault();
     const formData = {};
     for (let formElementIdentifier in orderForm) {
@@ -94,7 +94,7 @@ const ContactData = props => {
       breadTypes: props.breadTypes,
       sauces: props.sauces,
       userId: props.userId,
-      orderData: formData
+      orderData: formData,
     };
 
     props.onOrderSandwich(order, props.token);
@@ -107,11 +107,11 @@ const ContactData = props => {
         event.target.value,
         orderForm[inputIdentifier].validation
       ),
-      touched: true
+      touched: true,
     });
 
     const updatedOrderForm = updateObject(orderForm, {
-      [inputIdentifier]: updatedFormElement
+      [inputIdentifier]: updatedFormElement,
     });
 
     let formIsValid = true;
@@ -126,12 +126,12 @@ const ContactData = props => {
   for (let key in orderForm) {
     formElementsArray.push({
       id: key,
-      config: orderForm[key]
+      config: orderForm[key],
     });
   }
   let form = (
     <form onSubmit={orderHandler}>
-      {formElementsArray.map(formElement => (
+      {formElementsArray.map((formElement) => (
         <Input
           key={formElement.id}
           elementType={formElement.config.elementType}
@@ -140,12 +140,14 @@ const ContactData = props => {
           invalid={!formElement.config.valid}
           shouldValidate={formElement.config.validation}
           touched={formElement.config.touched}
-          changed={event => inputChangedHandler(event, formElement.id)}
+          changed={(event) => inputChangedHandler(event, formElement.id)}
         />
       ))}
-      <button className={classes.ContactBtn} disabled={!formIsValid}>
-        Wyslij do potwierdzenia
-      </button>
+      <div className={classes.BtnContainer}>
+        <button className={classes.ContactBtn} disabled={!formIsValid}>
+          Wyslij do potwierdzenia
+        </button>
+      </div>
     </form>
   );
   if (props.loading) {
@@ -161,21 +163,21 @@ const ContactData = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     ingredients: state.sandwichBuilder.ingredients,
     sauces: state.sandwichBuilder.sauces,
     breadTypes: state.sandwichBuilder.breadTypes,
     loading: state.order.loading,
     token: state.auth.token,
-    userId: state.auth.userId
+    userId: state.auth.userId,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onOrderSandwich: (orderData, token) =>
-      dispatch(actions.purchaseSandwich(orderData, token))
+      dispatch(actions.purchaseSandwich(orderData, token)),
   };
 };
 

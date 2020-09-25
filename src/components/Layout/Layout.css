@@ -1,9 +1,5 @@
 .Content {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   height: 100vh;
-  width: 100%;
   background-image: linear-gradient(
       to right bottom,
       rgba(14, 14, 14, 0.3),
@@ -11,10 +7,4 @@
     ),
     url("../../assets/pictures/tło2.jpg");
   background-size: cover;
-}
-
-@media (max-width: 60rem) {
-  .Content {
-    flex-direction: column;
-  }
 }

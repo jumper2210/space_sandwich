@@ -1,0 +1,92 @@
+.BuildControls {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 39vh;
+  font-size: 5rem;
+  background-color: rgba(22, 10, 4, 0.9);
+  border-radius: 0.7rem 0 0 0;
+  box-shadow: 0 0.7rem 1rem rgb(0, 0, 0);
+  padding-bottom: 2rem;
+}
+
+.KeepAdding {
+  background-color: #2e0103;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid rgb(0, 0, 0);
+  color: #fcfcfc;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 1rem 3rem;
+  border-radius: 0.4rem 0.4rem 0.4rem 0.4rem;
+}
+
+.Price {
+  position: absolute;
+  top: 5%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  font-size: 2.4rem;
+  color: #d8d8d8;
+}
+
+.KeepAdding:hover,
+.KeepAdding:active {
+  background-color: #4d0205;
+  color: #fcfcfc;
+}
+
+.KeepAdding:disabled {
+  background-color: #c7c6c6;
+  cursor: not-allowed;
+  border: 1px solid #ccc;
+  color: #888888;
+}
+
+.ComeBackBtn {
+  background-color: #2e0103;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid rgb(0, 0, 0);
+  color: #fcfcfc;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 1rem 3rem;
+  border-radius: 0.4rem 0.4rem 0.4rem 0.4rem;
+  margin-left: 2rem;
+}
+
+.btnContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .BuildControls {
+    font-size: 3rem;
+  }
+  .KeepAdding {
+    height: 2.9rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .Price {
+    font-size: 1.8rem;
+  }
+  .KeepAdding {
+    padding: 0.8rem;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classes from "./BuildBreadControls.module.css";
+import classes from "../BulidControls.module.css";
 import BuildBreadControl from "../../BuildControls/BuildBreadControls/BuildBreadControl/BuildBreadControl";
 
 const controls = [
@@ -12,8 +12,8 @@ const BuildBreadControls = (props) => {
   const [isBreadPicked, setIsBreadPicked] = useState(false);
 
   return (
-    <div className={classes.BuildBreadControls}>
-      <p className={classes.Price}>Aktualna cena: {props.price.toFixed(2)}</p>
+    <div className={classes.BuildControls}>
+      <p className={classes.Price}>cena: {props.price.toFixed(2)}</p>
       {controls.map((ctrl) => (
         <BuildBreadControl
           key={ctrl.label}
@@ -30,14 +30,15 @@ const BuildBreadControls = (props) => {
           disabledAdding={isBreadPicked}
         />
       ))}
-
-      <button
-        className={classes.KeepAdding}
-        disabled={!props.purchasable}
-        onClick={props.keepAdding}
-      >
-        Wybór składników
-      </button>
+      <div className={classes.btnContainer}>
+        <button
+          className={classes.KeepAdding}
+          disabled={!props.purchasable}
+          onClick={props.keepAdding}
+        >
+          Wybór składników
+        </button>
+      </div>
     </div>
   );
 };

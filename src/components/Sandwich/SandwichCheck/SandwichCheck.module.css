@@ -1,43 +1,43 @@
 .Sandwich {
-  width: 100%;
-  height: 250px;
-  text-align: center;
-  position: absolute;
-  top: 33%;
-  left: 22%;
   display: flex;
   flex-direction: column;
-  justify-items: center;
+  justify-content: space-evenly;
+  width: 30rem;
+  height: 30rem;
+  text-align: center;
+  position: relative;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   overflow-y: scroll;
 }
 
 .Sandwich::-webkit-scrollbar {
   display: none;
 }
+
 .Information {
   text-transform: uppercase;
   color: rgb(209, 200, 196);
-  font-size: 1.3rem;
-  font-weight: 200;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
-@media (min-width: 500px) and (min-height: 401px) {
+@media (max-width: 500px) {
   .Sandwich {
-    width: 450px;
-    height: 400px;
+    height: 15rem;
+    width: 15rem;
+  }
+  .Information {
+    font-size: 1.2rem;
   }
 }
 
-@media (min-width: 1000px) and (min-height: 700px) {
+@media (max-width: 350px) {
   .Sandwich {
-    width: 700px;
-    height: 600px;
+    height: 15rem;
   }
-}
-
-@media (min-width: 500px) and (min-height: 400px) {
-  .Sandwich {
-    width: 320px;
-    height: 300px;
+  .Information {
+    font-size: 1.2rem;
   }
 }

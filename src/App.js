@@ -24,6 +24,10 @@ const Orders = React.lazy(() => {
   return import("./containers/Orders/Orders");
 });
 
+const Contact = React.lazy(() => {
+  return import("./containers/Checkout/Contact/Contact");
+});
+
 const Authentication = React.lazy(() => {
   return import("./containers/Authentication/Authentication");
 });
@@ -51,6 +55,7 @@ const App = (props) => {
         />
         <Route path="/ViewUsers" render={(props) => <ViewUsers {...props} />} />
         <Route path="/UsersView" render={(props) => <UsersView {...props} />} />
+        <Route path="/contact" render={(props) => <Contact {...props} />} />
         <Route path="/checkout" render={(props) => <Checkout {...props} />} />
         <Route path="/orders" render={(props) => <Orders {...props} />} />
         <Route path="/logout" component={Logout} />

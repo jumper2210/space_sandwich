@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./BuildBreadControl.module.css";
+import classes from "../../BuildControl.module.css";
 
 const BuildControl = (props) => {
   return (

@@ -1,48 +1,70 @@
 .breadTopWheat {
-  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 13%;
   width: 100%;
   background: linear-gradient(#bd7303, #9e4700);
   border-radius: 50% 50% 0 0;
   margin: 2% auto;
-  position: relative;
   box-shadow: inset -0.2px -1px #c9c9c9;
-  top: 0.1rem;
-  left: 0;
 }
 
 .breadBottomWheat {
-  height: 100%;
+  position: absolute;
+  height: 15%;
+  top: 90%;
   width: 100%;
   background: linear-gradient(#bd7303, #9e4700);
   margin: 2% auto;
   border-radius: 0 0 70% 70%;
   box-shadow: inset -0.2px -1px #c9c9c9;
-  position: absolute;
-  top: 20rem;
-  left: 0;
 }
 
 .breadTopWholeGrains {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 13%;
   width: 80%;
   background: linear-gradient(#441800, #7c2d03);
   border-radius: 20% 20% 0 0;
-  margin: 2% auto;
-  position: relative;
+  margin: 0% auto;
 }
 
 .breadBottomWholeGrains {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(#441800, #7c2d03);
-  margin: 2% auto;
-  border-radius: 0 0 15% 15%;
   position: absolute;
-  top: 20rem;
-  left: 0;
+  height: 15%;
+  top: 90%;
+  width: 80%;
+  background: linear-gradient(#441800, #7c2d03);
+  margin: 0% auto;
+  border-radius: 0 0 15% 15%;
 }
 
-.seeds {
+.breadTopNoGluten {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15%;
+  width: 90%;
+  background: linear-gradient(#b39e9e, #c2ab6e);
+  border-radius: 10% 10% 0 0;
+  margin: 2% auto;
+  box-shadow: inset -0.2px -1px #c9c9c9;
+}
+
+.breadBottomNoGluten {
+  position: absolute;
+  top: 90%;
+  height: 15%;
+  width: 90%;
+  background: linear-gradient(#c2ab6e, #b39e9e);
+  margin: 2% auto;
+  border-radius: 0 0 10% 10%;
+  box-shadow: inset -0.2px -1px #c9c9c9;
+}
+/* .seeds {
   position: absolute;
   width: 10%;
   height: 15%;
@@ -78,9 +100,9 @@
   border-radius: 40%;
   transform: rotate(60deg);
   box-shadow: inset -1px -3px #c9c9c9;
-}
+} */
 
-.seeds2 {
+/* .seeds2 {
   position: absolute;
   width: 10%;
   height: 15%;
@@ -103,34 +125,11 @@
   border-radius: 40%;
   transform: rotate(90deg);
   box-shadow: inset 1px 3px #c9c9c9;
-}
-
-.breadTopNoGluten {
-  height: 15%;
-  width: 90%;
-  background: linear-gradient(#b39e9e, #c2ab6e);
-  border-radius: 10% 10% 0 0;
-  margin: 2% auto;
-  position: relative;
-  box-shadow: inset -0.2px -1px #c9c9c9;
-}
-
-.breadBottomNoGluten {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(#c2ab6e, #b39e9e);
-  margin: 2% auto;
-  border-radius: 0 0 10% 10%;
-  box-shadow: inset -0.2px -1px #c9c9c9;
-  position: absolute;
-  top: 20rem;
-  left: 0;
-}
+} */
 
 .seam {
   position: absolute;
   left: 32%;
-  bottom: 55%;
   height: 0;
   width: 0;
   border-left: 20px solid transparent;
@@ -142,7 +141,6 @@
 .seam3 {
   position: absolute;
   left: 1.7rem;
-  top: 0;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
   border-bottom: 20px solid #fff;
@@ -152,7 +150,6 @@
 .seam2 {
   position: absolute;
   left: 64%;
-  bottom: 55%;
   height: 0;
   width: 0;
   border-left: 20px solid transparent;

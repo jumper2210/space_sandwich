@@ -1,8 +1,8 @@
 .Space {
   width: 100%;
   height: 2.5%;
-  margin: 2% auto;
-  background: #002daa;
+  margin: 0% auto;
+  background: #3958ac;
   border-radius: 20px;
 }
 
@@ -10,13 +10,13 @@
   width: 100%;
   height: 2%;
   background: #630101;
-  margin: 2% auto;
+  margin: 0% auto;
 }
 
 .Ketchup {
   width: 100%;
   height: 4%;
   background: linear-gradient(#f80101, #ff0357);
-  margin: 2% auto;
+  margin: 0% auto;
   border-radius: 15px;
 }

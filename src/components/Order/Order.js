@@ -1,8 +1,7 @@
 import React from "react";
-
 import classes from "./Order.module.css";
 
-const order = props => {
+const order = (props) => {
   const ingredients = [];
   const sauces = [];
   const breadTypes = [];
@@ -10,24 +9,24 @@ const order = props => {
   for (let ingredientName in props.ingredients) {
     ingredients.push({
       name: ingredientName,
-      amount: props.ingredients[ingredientName]
+      amount: props.ingredients[ingredientName],
     });
   }
 
   for (let saucesName in props.sauces) {
     sauces.push({
       name: saucesName,
-      amount: props.sauces[saucesName]
+      amount: props.sauces[saucesName],
     });
   }
 
   for (let breadTypesName in props.breadTypes) {
     breadTypes.push({
       name: breadTypesName,
-      amount: props.breadTypes[breadTypesName]
+      amount: props.breadTypes[breadTypesName],
     });
   }
-  const ingredientOutput = ingredients.map(ig => {
+  const ingredientOutput = ingredients.map((ig) => {
     return (
       <span
         style={{
@@ -35,7 +34,7 @@ const order = props => {
           display: "inline-block",
           margin: "0 8px",
           border: "1px solid #ccc",
-          padding: "5px"
+          padding: "5px",
         }}
         key={ig.name}
       >
@@ -43,7 +42,7 @@ const order = props => {
       </span>
     );
   });
-  const sauceOutput = sauces.map(su => {
+  const sauceOutput = sauces.map((su) => {
     return (
       <span
         style={{
@@ -51,7 +50,7 @@ const order = props => {
           display: "inline-block",
           margin: "0 8px",
           border: "1px solid #ccc",
-          padding: "5px"
+          padding: "5px",
         }}
         key={su.name}
       >
@@ -59,7 +58,7 @@ const order = props => {
       </span>
     );
   });
-  const breadTypeOutput = breadTypes.map(bd => {
+  const breadTypeOutput = breadTypes.map((bd) => {
     return (
       <span
         style={{
@@ -67,7 +66,7 @@ const order = props => {
           display: "inline-block",
           margin: "0 8px",
           border: "1px solid #ccc",
-          padding: "5px"
+          padding: "5px",
         }}
         key={bd.name}
       >

@@ -3,10 +3,10 @@ import classes from "./SandwichCheck.module.css";
 import SandwichBreadType from "../SandwichType/SandwichBreadType/SandwichBreadType";
 import SandwichIngredientsType from "../SandwichType/SandwichIngredientsType/SandwichIngredientsType";
 import SandwichSaucesType from "../SandwichType/SandwichSaucesType/SandwichSaucesType";
-const SandwichCheck = props => {
+const SandwichCheck = (props) => {
   let transformedIngredientsType = Object.keys(props.ingredients)
 
-    .map(igKey => {
+    .map((igKey) => {
       return [...Array(props.ingredients[igKey])].map((_, i) => {
         return <SandwichIngredientsType key={igKey + i} type={igKey} />;
       });
@@ -15,7 +15,7 @@ const SandwichCheck = props => {
       return arr.concat(el);
     }, []);
   let transformedSaucesType = Object.keys(props.sauces)
-    .map(suKey => {
+    .map((suKey) => {
       return [...Array(props.sauces[suKey])].map((_, i) => {
         return <SandwichSaucesType key={suKey + i} type={suKey} />;
       });
@@ -26,7 +26,7 @@ const SandwichCheck = props => {
 
   let transformedBreadType = Object.keys(props.breadTypes)
 
-    .map(btKey => {
+    .map((btKey) => {
       return [...Array(props.breadTypes[btKey])].map((_, i) => {
         return <SandwichBreadType key={btKey + i} type={btKey} />;
       });

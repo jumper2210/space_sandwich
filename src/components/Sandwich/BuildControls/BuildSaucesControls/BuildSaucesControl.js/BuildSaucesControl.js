@@ -1,9 +1,9 @@
 import React from "react";
-import classes from "./BuildSaucesControl.module.css";
+import classes from "../../BuildControl.module.css";
 
-const BuildSauceControl = props => {
+const BuildSauceControl = (props) => {
   return (
-    <div className={classes.BuildSaucesControl}>
+    <div className={classes.BuildControl}>
       <p className={classes.Label}>{props.label}</p>
       <button className={classes.Pick} onClick={props.clicked}>
         Więcej
