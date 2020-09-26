@@ -19,6 +19,6 @@ This is my first bigger application written using React. The main goal was to ga
 ### Live
 [click me](https://trusting-hopper-468785.netlify.app/)
 
-For now only front-end side and desktop only.
+For now only front-end side avaible.
 #### Author
 Krzysztof Skoczek
