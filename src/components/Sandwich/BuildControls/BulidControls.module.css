@@ -32,7 +32,7 @@
   left: 49%;
   transform: translate(-50%, -50%);
   text-transform: uppercase;
-  font-size: 2.4rem;
+  font-size: 2rem;
   color: #d8d8d8;
 }
 
@@ -76,6 +76,15 @@
 @media (max-width: 1000px) {
   .BuildControls {
     font-size: 3rem;
+  }
+  .KeepAdding {
+    height: 2.9rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .BuildControls {
+    font-size: 3.8rem;
   }
   .KeepAdding {
     height: 2.9rem;

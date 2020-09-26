@@ -3,7 +3,7 @@
   flex-flow: column;
   justify-content: space-between;
   align-items: center;
-  padding: 7rem;
+  padding: 3rem 4rem;
 }
 
 .BuildControl button {
@@ -83,6 +83,6 @@
     font-size: 0.8rem;
   }
   .Label {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }
