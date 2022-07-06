@@ -6,7 +6,7 @@
   width: 100%;
   background: linear-gradient(#bd7303, #9e4700);
   border-radius: 50% 50% 0 0;
-  margin: 2% auto;
+  margin: 10% auto;
   box-shadow: inset -0.2px -1px #c9c9c9;
 }
 
@@ -16,7 +16,7 @@
   top: 90%;
   width: 100%;
   background: linear-gradient(#bd7303, #9e4700);
-  margin: 2% auto;
+  margin: 10% auto;
   border-radius: 0 0 70% 70%;
   box-shadow: inset -0.2px -1px #c9c9c9;
 }
@@ -29,7 +29,7 @@
   width: 80%;
   background: linear-gradient(#441800, #7c2d03);
   border-radius: 20% 20% 0 0;
-  margin: 0% auto;
+  margin: 10% auto;
 }
 
 .breadBottomWholeGrains {
@@ -38,7 +38,7 @@
   top: 90%;
   width: 80%;
   background: linear-gradient(#441800, #7c2d03);
-  margin: 0% auto;
+  margin: 10% auto;
   border-radius: 0 0 15% 15%;
 }
 
@@ -50,7 +50,7 @@
   width: 90%;
   background: linear-gradient(#b39e9e, #c2ab6e);
   border-radius: 10% 10% 0 0;
-  margin: 2% auto;
+  margin: 10% auto;
   box-shadow: inset -0.2px -1px #c9c9c9;
 }
 
@@ -60,72 +60,10 @@
   height: 15%;
   width: 90%;
   background: linear-gradient(#c2ab6e, #b39e9e);
-  margin: 2% auto;
+  margin: 12% auto;
   border-radius: 0 0 10% 10%;
   box-shadow: inset -0.2px -1px #c9c9c9;
 }
-/* .seeds {
-  position: absolute;
-  width: 10%;
-  height: 15%;
-  background-color: white;
-  left: 30%;
-  top: 60%;
-  border-radius: 40%;
-  transform: rotate(-20deg);
-  box-shadow: inset -2px -3px #c9c9c9;
-}
-
-.seeds:after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: white;
-  left: -170%;
-  top: -290%;
-  border-radius: 40%;
-  transform: rotate(60deg);
-  box-shadow: inset -1px 2px #c9c9c9;
-}
-
-.seeds:before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: white;
-  left: 180%;
-  top: 100%;
-  border-radius: 40%;
-  transform: rotate(60deg);
-  box-shadow: inset -1px -3px #c9c9c9;
-} */
-
-/* .seeds2 {
-  position: absolute;
-  width: 10%;
-  height: 15%;
-  background-color: white;
-  left: 64%;
-  top: 50%;
-  border-radius: 40%;
-  transform: rotate(10deg);
-  box-shadow: inset -3px -0 #c9c9c9;
-}
-
-.seeds2:after {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  content: "";
-  left: 150%;
-  top: -130%;
-  border-radius: 40%;
-  transform: rotate(90deg);
-  box-shadow: inset 1px 3px #c9c9c9;
-} */
 
 .seam {
   position: absolute;
